@@ -7,16 +7,17 @@ const identity = {
   firstName: "Moïse Stéphane KINYOK",
   country: "France",
   city: "Angers",
-  occupation: "Étudiant ingénieur en informatique et électronique",
+  occupation: "Étudiant ingénieur en systèmes d’information et alternant en production et observabilité",
   hobbies: ["lecture", "nouvelles technologies", "voyages", "course", "football"],
 };
 
 const skills = [
-  "Python, Java, C, R et SQL",
-  "HTML, CSS, JavaScript, PHP, Django et Astro",
-  "Pandas, Power BI, Tableau, Talend, ETL, Machine Learning et NLP",
-  "MySQL, Oracle, MariaDB et phpMyAdmin",
-  "Linux, Cisco Packet Tracer, Microsoft Azure, Git et GitHub",
+  "Supervision : Elastic Stack, Elasticsearch, Kibana, Logstash, KQL, ES|QL et Lucene",
+  "Observabilité : OMi, BMC Control-M, Operations Orchestration et ServiceNow",
+  "Automatisation : Elastic Transforms, Watcher, Machine Learning et Ansible",
+  "DevOps et systèmes : Git, GitLab, GitHub, Docker, Vagrant, VirtualBox, Unix/Linux et Azure",
+  "Développement : Python, Shell/ksh, Java, C, Ruby, JavaScript, PHP, Django et Android",
+  "Données : MySQL, Oracle, PostgreSQL, MariaDB, Pandas, Power BI et Power Query",
 ];
 
 const qualities = [
@@ -42,21 +43,22 @@ const textCase = "none";
   <div class="about-page container">
     <section class="about-intro" aria-labelledby="about-intro-title">
       <div data-reveal="left">
-        <p class="eyebrow">Profil · Informatique · Data</p>
+        <p class="eyebrow">Profil · Production · Observabilité</p>
         <h2 id="about-intro-title">
-          Je transforme des besoins techniques en solutions utiles et fiables.
+          Je rends les systèmes d’information plus fiables, observables et efficaces.
         </h2>
       </div>
 
       <div class="about-intro__copy" data-reveal="right">
         <p>
           Je m’appelle {identity.firstName}. Basé à {identity.city}, je suis {identity.occupation.toLowerCase()}.
-          Je développe mes compétences à la rencontre du logiciel, des systèmes d’information et de la donnée.
+          Depuis septembre 2025, je travaille en alternance chez CNP Assurances sur la supervision
+          des services et l’analyse des incidents.
         </p>
         {passionateAboutTech && (
           <p>
-            Je suis particulièrement attiré par l’analyse de données, les infrastructures, la cybersécurité
-            et la création d’applications web.
+            Je m’oriente vers le Site Reliability Engineering (SRE) : détecter les anomalies,
+            automatiser les contrôles et améliorer la disponibilité des services numériques.
           </p>
         )}
       </div>
@@ -67,6 +69,7 @@ const textCase = "none";
       <a href="#parcours">Parcours professionnel</a>
       <a href="#projets-techniques">Projets</a>
       <a href="#formation">Formation</a>
+      <a href="#langues">Langues et certification</a>
       <a href="#atouts">Atouts</a>
       <a href="#interets">Centres d’intérêt</a>
     </nav>
@@ -76,8 +79,8 @@ const textCase = "none";
         <p class="eyebrow">En quelques mots</p>
         <h2>Un profil polyvalent</h2>
         <p>
-          Mon parcours associe une formation scientifique exigeante à des expériences concrètes en analyse
-          de données, développement web, bases de données et gestion de projet.
+          Mon parcours associe une formation scientifique à l’ESEO, une expérience en analyse
+          de données et une alternance en production et observabilité chez CNP Assurances.
         </p>
         <dl class="profile-facts">
           <div>
@@ -91,6 +94,10 @@ const textCase = "none";
           <div>
             <dt>Diplôme visé</dt>
             <dd>{graduationYear}</dd>
+          </div>
+          <div>
+            <dt>Mobilité</dt>
+            <dd>France et Europe · permis B</dd>
           </div>
         </dl>
         {!engineeringDegreeCompleted && (
@@ -111,10 +118,24 @@ const textCase = "none";
       <div class="section-heading" data-reveal>
         <p class="eyebrow">Expériences</p>
         <h2 id="experience-title">Parcours professionnel</h2>
-        <p>2023–2024</p>
+        <p>Depuis 2025</p>
       </div>
 
       <div class="career-list">
+        <article class="career-item" data-reveal>
+          <p class="career-item__date">Depuis septembre 2025</p>
+          <div>
+            <p class="eyebrow">CNP Assurances · Angers</p>
+            <h3>Ingénieur production et observabilité en alternance</h3>
+            <ul>
+              <li>Supervision d’environnements hybrides mainframe et Unix, avec BMC Control-M, OMi et ServiceNow.</li>
+              <li>Création de tableaux de supervision Elastic Stack pour suivre les flux et détecter les anomalies métier.</li>
+              <li>Utilisation d’Elastic Machine Learning, Transforms et Watcher pour automatiser des contrôles et repérer des variations anormales.</li>
+              <li>Industrialisation des artefacts avec les équipes DevOps : GitLab, tests, migrations et préparation des déploiements Ansible.</li>
+            </ul>
+          </div>
+        </article>
+
         <article class="career-item" data-reveal>
           <p class="career-item__date">Juillet–août 2024</p>
           <div>
@@ -157,14 +178,14 @@ const textCase = "none";
     <section class="about-grid" aria-label="Projets et formation">
       <article id="projets-techniques" class="panel" data-reveal="left">
         <p class="eyebrow">Projet technique</p>
-        <h2>Infrastructure, réseau et base de données</h2>
+        <h2>Infrastructure, réseau et bases de données</h2>
         <p>
-          Conception d’une infrastructure avec Cisco Packet Tracer, déploiement d’une machine virtuelle
-          Linux sur Microsoft Azure et sécurisation de sites web par SSL.
+          Simulation de VLAN et de routage avec Cisco Packet Tracer, déploiement d’une machine
+          virtuelle Linux sur Azure et sécurisation de deux sites Apache avec HTTPS.
         </p>
         <p>
-          Mise en place d’une base MariaDB, administration avec phpMyAdmin et MySQL Workbench, puis
-          interrogation des données avec des requêtes SQL avancées.
+          Administration d’une base MariaDB avec phpMyAdmin et MySQL Workbench, optimisation par
+          indexation, sauvegardes automatisées et requêtes SQL avancées.
         </p>
       </article>
 
@@ -174,7 +195,7 @@ const textCase = "none";
         <ol class="education-list">
           <li>
             <strong>ESEO, Angers</strong>
-            <span>Diplôme d’ingénieur informatique et électronique · 2024–{graduationYear}</span>
+            <span>Diplôme d’ingénieur généraliste, spécialité systèmes d’information · 2024–{graduationYear}</span>
           </li>
           <li>
             <strong>Prépas Internationales, Yaoundé</strong>
@@ -185,6 +206,23 @@ const textCase = "none";
             <span>Baccalauréat C · 2022</span>
           </li>
         </ol>
+      </article>
+    </section>
+
+    <section id="langues" class="about-grid" aria-label="Langues et certification">
+      <article class="panel" data-reveal="left">
+        <p class="eyebrow">Langues</p>
+        <h2>Communiquer en français et en anglais</h2>
+        <ul class="education-list">
+          <li><strong>Français</strong><span>Langue maternelle</span></li>
+          <li><strong>Anglais</strong><span>TOEIC : 955/990</span></li>
+        </ul>
+      </article>
+
+      <article class="panel panel--soft" data-reveal="right">
+        <p class="eyebrow">Certification</p>
+        <h2>Gestion de projet</h2>
+        <p>MOOC de gestion de projet, en complément des méthodes agiles et de la coordination technique pratiquées en équipe.</p>
       </article>
     </section>
 

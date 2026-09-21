@@ -7,7 +7,7 @@ export async function GET(context) {
   return rss({
     title: 'Moïse Stéphane KINYOK | Blog informatique',
     description:
-      "Mes articles sur l'informatique, l'analyse de données et les systèmes d'information.",
+      "Mes articles sur la production, l'observabilité, l'analyse de données et les systèmes d'information.",
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

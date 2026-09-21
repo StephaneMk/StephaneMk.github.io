@@ -1,7 +1,7 @@
 ---
 title: Mon projet d'infrastructures, réseaux et bases de données
 author: Moïse Stéphane KINYOK
-description: "Présentation d'un projet réunissant réseaux, cloud, sécurité web et bases de données."
+description: "VLAN, routage, VM Linux sur Azure, sites Apache sécurisés et base MariaDB."
 image:
     url: "/images/eseo-systemes-information-4k.jpeg"
     alt: "Photographie technologique illustrant un système d'information, ses services et ses échanges de données."
@@ -15,14 +15,14 @@ Dans le cadre de ma formation, j'ai réalisé un projet réunissant plusieurs do
 
 ## Mise en place de l'infrastructure
 
-J'ai créé une infrastructure réseau avec Cisco Packet Tracer et installé une machine virtuelle Linux dans le cloud Microsoft Azure. Ce travail m'a permis de mieux comprendre la communication entre les machines et le fonctionnement d'une infrastructure informatique.
+J'ai conçu et simulé une architecture réseau avec des VLAN et du routage dans Cisco Packet Tracer. J'ai ensuite provisionné une machine virtuelle Linux sur Microsoft Azure, configuré son accès SSH et sécurisé son réseau.
 
 ## Création et sécurisation des sites web
 
-J'ai créé deux sites web virtuels et appliqué un certificat SSL afin de sécuriser les échanges de données. J'ai également rédigé un cahier des charges contenant les principales spécifications fonctionnelles des sites.
+J'ai déployé deux sites web sous Apache avec des certificats SSL Let's Encrypt pour protéger les échanges. J'ai également rédigé un cahier des charges contenant les spécifications fonctionnelles des sites.
 
 ## Gestion de la base de données
 
-J'ai mis en place une base de données relationnelle MariaDB avec XAMPP, puis je l'ai administrée avec phpMyAdmin et MySQL Workbench. J'ai utilisé des index, effectué des sauvegardes et écrit des requêtes SQL avec `LEFT JOIN` et `INNER JOIN`.
+J'ai installé et administré une base relationnelle MariaDB avec XAMPP, phpMyAdmin et MySQL Workbench. J'ai géré le schéma et les utilisateurs, ajouté des index, planifié des sauvegardes automatisées et écrit des requêtes `LEFT JOIN` et `INNER JOIN` ainsi que des scripts de nettoyage des données.
 
 Ce projet m'a appris à relier une base de données à un site web tout en tenant compte de l'organisation, des performances et de la sécurité des données.
