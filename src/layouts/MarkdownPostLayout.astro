@@ -22,7 +22,7 @@ const formattedDate = frontmatter.pubDate.toLocaleDateString('fr-FR', {
 
       <div class="article-hero__grid">
         <div class="article-hero__copy" data-reveal="left">
-          <p class="eyebrow">Projet · Retour d’expérience</p>
+          <p class="eyebrow">Article · Retour d’expérience</p>
           <h1>{frontmatter.title}</h1>
           <p class="article-description">{frontmatter.description}</p>
 
@@ -44,11 +44,13 @@ const formattedDate = frontmatter.pubDate.toLocaleDateString('fr-FR', {
             src={frontmatter.image.url}
             alt={frontmatter.image.alt}
           />
-          <img
-            class="article-logo"
-            src={frontmatter.logo.url}
-            alt={frontmatter.logo.alt}
-          />
+          {frontmatter.logo && (
+            <img
+              class="article-logo"
+              src={frontmatter.logo.url}
+              alt={frontmatter.logo.alt}
+            />
+          )}
         </div>
       </div>
     </header>
@@ -60,7 +62,7 @@ const formattedDate = frontmatter.pubDate.toLocaleDateString('fr-FR', {
 
       <aside class="article-aside" data-reveal="right">
         <p class="eyebrow">À retenir</p>
-        <p>Ce projet fait partie de mon parcours en ingénierie informatique et systèmes d’information.</p>
+        <p>Cet article présente une étape de mon parcours en ingénierie informatique et systèmes d’information.</p>
         <a class="text-link" href="/about/">Découvrir mon profil <span aria-hidden="true">→</span></a>
       </aside>
     </div>

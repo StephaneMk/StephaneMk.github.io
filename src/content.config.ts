@@ -16,7 +16,7 @@ const blog = defineCollection({
     logo: z.object({
       url: z.string(),
       alt: z.string(),
-    }),
+    }).optional(),
     tags: z.array(z.string()),
   }),
 });
