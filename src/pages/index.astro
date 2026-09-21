@@ -2,12 +2,60 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import Greeting from '../components/Greeting.jsx';
 
 const pageTitle = 'Moïse Stéphane KINYOK | Ingénierie informatique';
 const featuredPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
+
+const githubProjects = [
+  {
+    number: '01',
+    category: 'Automatisation & data',
+    title: 'Agent de suivi des prix Ryanair',
+    description:
+      'Un agent Python qui surveille des itinéraires, compare les prix et déclenche une alerte lorsqu’un tarif cible ou une baisse significative est détecté.',
+    tags: ['Python', 'Playwright', 'SerpAPI', 'Pytest'],
+    repositoryUrl: 'https://github.com/StephaneMk/ryanair-price-agent',
+    mark: 'FLY',
+    tone: 'blue' as const,
+  },
+  {
+    number: '02',
+    category: 'Application full-stack',
+    title: 'AnimeStore',
+    description:
+      'Une plateforme e-commerce complète avec catalogue, commandes, réservations, fidélité, recommandations et espace d’administration sécurisé.',
+    tags: ['React', 'Node.js', 'Express', 'MySQL', 'JWT'],
+    repositoryUrl: 'https://github.com/StephaneMk/animestore-fullstack',
+    mark: 'AS',
+    tone: 'pink' as const,
+  },
+  {
+    number: '03',
+    category: 'Web & base de données',
+    title: 'Gestion de concours de dessins',
+    description:
+      'Une application académique gérant concours, inscriptions, dépôts, jurys, évaluations et résultats grâce à des espaces adaptés à chaque rôle.',
+    tags: ['PHP', 'MySQL', 'PDO', 'Modélisation', 'Sécurité'],
+    repositoryUrl: 'https://github.com/StephaneMk/gestion-concours-dessins',
+    mark: 'SQL',
+    tone: 'cyan' as const,
+  },
+  {
+    number: '04',
+    category: 'Développement mobile',
+    title: 'Application Android de calcul d’IMC',
+    description:
+      'Une application Java avec saisie contrôlée, calcul et interprétation de l’IMC, mémorisation locale du résultat et partage par e-mail.',
+    tags: ['Android', 'Java', 'Gradle', 'Material UI'],
+    repositoryUrl: 'https://github.com/StephaneMk/project-imc-android',
+    mark: 'IMC',
+    tone: 'navy' as const,
+  },
+];
 ---
 
 <BaseLayout
@@ -156,6 +204,21 @@ const featuredPosts = (await getCollection('blog'))
             pubDate={post.data.pubDate}
           />
         ))}
+      </ul>
+
+      <div class="github-projects-heading" data-reveal>
+        <div>
+          <p class="section-kicker">Projets récents · GitHub</p>
+          <h3>Quatre applications, quatre terrains d’apprentissage.</h3>
+        </div>
+        <p>
+          Automatisation, e-commerce, système d’information et mobile : ces projets
+          complètent les expériences présentées plus haut avec des réalisations concrètes.
+        </p>
+      </div>
+
+      <ul class="github-project-grid" role="list">
+        {githubProjects.map((project) => <ProjectCard {...project} />)}
       </ul>
     </div>
   </section>

@@ -1,0 +1,58 @@
+---
+interface Props {
+  number: string;
+  category: string;
+  title: string;
+  description: string;
+  tags: string[];
+  repositoryUrl: string;
+  mark: string;
+  tone: 'blue' | 'pink' | 'cyan' | 'navy';
+}
+
+const {
+  number,
+  category,
+  title,
+  description,
+  tags,
+  repositoryUrl,
+  mark,
+  tone,
+} = Astro.props;
+---
+
+<li class={`github-project-card github-project-card--${tone}`} data-reveal>
+  <article>
+    <div class="github-project-card__topline">
+      <span>{number}</span>
+      <span class="github-project-card__status">
+        <span aria-hidden="true"></span>
+        Dépôt privé
+      </span>
+    </div>
+
+    <div class="github-project-card__visual" aria-hidden="true">
+      <span>{mark}</span>
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
+
+    <div class="github-project-card__body">
+      <p class="eyebrow">{category}</p>
+      <h3>{title}</h3>
+      <p>{description}</p>
+
+      <ul class="github-project-card__tags" aria-label={`Technologies utilisées pour ${title}`}>
+        {tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+
+      <a href={repositoryUrl} target="_blank" rel="noreferrer">
+        Voir sur GitHub
+        <span aria-hidden="true">↗</span>
+        <span class="sr-only"> — accès réservé aux collaborateurs autorisés</span>
+      </a>
+    </div>
+  </article>
+</li>
