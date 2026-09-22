@@ -254,6 +254,11 @@ p:last-child {
   text-decoration: none;
 }
 
+.hero-cv-link,
+.profile-cv-link {
+  margin-top: 1rem;
+}
+
 /* En-tête */
 .site-header {
   position: sticky;

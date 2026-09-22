@@ -1,0 +1,89 @@
+ stephanekinyok26@gmail.com              Moise Stéphane KINYOK
+
+ 1 Rue Léon Pavot                        Ingénieur SRE Production et Observabilité Recherche
+                                          d’un premier emploi dès septembre 2026.
+     Angers (49100)
+                                          Passionné par les systèmes d’information, la production et l’observabilité, je m’oriente vers les
+ Né le 26/05/2004                        métiers du SRE afin de contribuer à la fiabilité, à la performance et à l’automatisation des services
+                                          numériques. Fort de 2 stages et de 2 années d’alternance, je développe une expérience concrète
+  https://portfolio-moise-               en supervision, analyse d’incidents, automatisation et industrialisation, avec l’objectif de
+   kinyok.netlify.app/                    concevoir des environnements plus robustes, observables et efficaces.
+
+ Permis B                                Expériences professionnelles
+
+ France, Europe                                Ingénieur Production et Observabilité en alternance
+                                                Depuis sept. 2025 CNP Assurances Angers
+ +33 (0) 7 68999602
+                                                    Supervision d’une architecture hybride mainframe/Unix : exploitation des statuts
+ Télétravail ou présentiel                         BMC Control-M, comptes rendus et événements techniques, mise en place de contrôles,
+                                                    restitution via l’IHM interne et configuration de vues OMi pour la qualification des
+Réseaux sociaux                                     anomalies jusqu’à ServiceNow.
+                                                    Développement d’une supervision de masse avec Elastic Stack pour suivre les
+ Moise Stéphane KINYOK                             volumes de contrats, montants, blocages et ruptures de flux, tout en identifiant les
+                                                    contrats impactés, leur étape dans le parcours métier et les erreurs associées.
+Compétences                                         Enrichissement de la supervision avec Elastic Machine Learning, Transforms et
+                                                    Watcher afin de détecter les variations anormales et d’isoler des anomalies métier
+Supervision fonctionnelle et                        ciblées, notamment l’absence de RIB lors d’un rachat partiel.
+technique                                           Industrialisation avec les équipes DevOps : versionnement des artefacts sous GitLab,
+                                                    tests et migrations entre environnements, puis préparation des déploiements Ansible
+Automatisation et industrialisation                 dans le respect des standards internes.
+
+Analyse de données et Machine                   Data Analyst Junior en stage
+Learning                                        De juil. 2024 à août 2024 Groupe KIM Cameroun Yaoundé
+
+Reporting et accompagnement                         Extraction et transformation de +500 000 lignes de données MySQL avec Python et
+métier                                              Pandas.
+                                                    Création de 3 tableaux de bord dynamiques sous Power BI pour l'analyse métier.
+Gestion de projet et coordination                   Automatisation de rapports sous Excel (Power Query), réduisant le temps d’analyse de
+technique                                           30%.
+                                                    Extraction automatique de données numérisées et résumé de comptes rendus avec NLP
+Outils Informatiques                                (Natural Language Processing) .
+
+Supervision, Observabilité &              Projets réalisés
+Exploitation SI
+Elastic Stack, Elasticsearch, Kibana,     Projet architecture des systèmes d'informations
+Logstash, KQL, ES|QL, Lucene,                 Modélisation Merise (MCD → MLD → MPD) pour formaliser les besoins métiers et structurer la
+Transforms, Watcher, OMi, BMC Control-        base de données.
+M, Operations Orchestration (OO),             Conception et optimisation d’un schéma MySQL : définition de tables avec clés primaires/
+ServiceNow                                    étrangères, indexation ciblée et partitionnement pour garantir performance et intégrité.
+                                              Écriture de requêtes SQL avancées (JOIN multicritères, GROUP BY, fonctions de fenêtrage
+Programmation & Développement                 ROW_NUMBER(), SUM() OVER…) pour extraire et agréger des indicateurs clés.
+Java, C, Ruby, Python, SQl, Shell/ksh,        Développement d’un front-end web avec PHP pour les modules de reporting.
+Android, JavaScript, HTML, CSS, PHP,          Automatisation des traitements métier via procédures stockées et triggers (BEFORE/AFTER),
+Django                                        avec historisation des données et centralisation de la logique.
+                                              Sécurisation des accès et prévention des injections SQL par paramètres, validation côté
+Base de données                               serveur et gestion des rôles.
+MySQL, Oracle, PostgreSQL
+                                          Projet infrastructures, réseaux et bases de données
+DevOps, Systèmes & Cloud                      Conception et simulation de l’architecture réseau (VLAN, routage) avec Cisco Packet Tracer.
+Git, GitLab, GitHub, Ansible, Docker,         Provisioning d’une VM Linux sur Azure, configuration SSH et sécurisation réseau.
+Vagrant, VirtualBox, Unix/Linux, Ubuntu,      Déploiement de deux sites web Apache avec certificats SSL Let’s Encrypt.
+Debian, Windows, Microsoft Azure              Installation et administration MariaDB (XAMPP, phpMyAdmin, MySQL Workbench) : schéma,
+                                              utilisateurs, monitoring.
+Environnements de développement               Optimisation des performances par indexation et planification de sauvegardes automatisées.
+VS code, IntelliJ, codeblocks, android        Écriture de requêtes SQL complexes (LEFT/INNER JOIN) et scripts de nettoyage/transformation
+studio                                        des données.
+                                              Rédaction du cahier des charges fonctionnel et intégration sécurisée de la base aux
+Machine Learning et Data                      applications web.
+Elastic ML, Pandas, NLP
+                                          Diplômes et Formations
+Atouts
+                                                Diplôme d'ingénieur généraliste : Système d'information
+Rigueur et organisation                         De sept. 2024 à 2027 ESEO, école d'ingénieur en électronique et informatique Angers
+
+Esprit d'équipe                                 Prépa MPSI
+                                                De sept. 2022 à juil. 2024 Prépas Internationales, CPGE Yaoundé
+Autonomie et Méthodologies agiles
+                                          Certification
+Communication efficace
+                                          MOOC gestion de projet
+Adaptabilité et curiosité
+
+Langues
+
+Français
+Langue Maternelle
+
+Anglais
+› TOEIC : 955/990
+
