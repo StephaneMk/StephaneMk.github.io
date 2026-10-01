@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import avatar from '../assets/images/kim.jpeg';
 import Menu from './Menu.astro';
 import Navigation from './Navigation.astro';
 import ThemeIcon from './ThemeIcon.astro';
@@ -10,16 +12,16 @@ import ThemeIcon from './ThemeIcon.astro';
   </div>
   <div class="header-inner">
     <a class="brand" href="/" aria-label="Accueil — Portfolio de Moïse Stéphane KINYOK">
-      <img
+      <Image
         class="brand-avatar"
-        src="/images/kim.jpeg"
+        src={avatar}
         alt=""
-        width="490"
-        height="617"
+        width={96}
+        loading="eager"
       />
       <span class="brand-copy">
         <strong>Moïse Stéphane KINYOK</strong>
-        <small>Production & observabilité</small>
+        <small>Data / Business Analyst</small>
       </span>
     </a>
 

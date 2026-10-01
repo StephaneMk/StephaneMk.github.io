@@ -3,10 +3,10 @@ title: Mon projet d'infrastructures, réseaux et bases de données
 author: Moïse Stéphane KINYOK
 description: "VLAN, routage, VM Linux sur Azure, sites Apache sécurisés et base MariaDB."
 image:
-    url: "/images/eseo-systemes-information-4k.jpeg"
+    url: "../assets/images/eseo-systemes-information-4k.jpeg"
     alt: "Photographie technologique illustrant un système d'information, ses services et ses échanges de données."
 logo:
-    url: "/images/eseo.svg.png"
+    url: "../assets/images/eseo.svg.png"
     alt: "Logo de l'ESEO."
 pubDate: 2026-08-26
 tags: ["réseaux", "cloud", "mysql", "cybersécurité"]

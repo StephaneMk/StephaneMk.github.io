@@ -13,7 +13,7 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
         observer.unobserve(entry.target);
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    { threshold: 0, rootMargin: '0px 0px -8% 0px' },
   );
 
   revealElements.forEach((element, index) => {

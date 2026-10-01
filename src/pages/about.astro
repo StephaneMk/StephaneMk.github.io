@@ -7,17 +7,25 @@ const identity = {
   firstName: "Moïse Stéphane KINYOK",
   country: "France",
   city: "Angers",
-  occupation: "Étudiant ingénieur en systèmes d’information et alternant en production et observabilité",
   hobbies: ["lecture", "nouvelles technologies", "voyages", "course", "football"],
 };
 
+const competencies = [
+  "Analyse des besoins métier",
+  "Analyse et qualité des données",
+  "Reporting et tableaux de bord",
+  "Détection d’anomalies et Machine Learning",
+  "Accompagnement des utilisateurs",
+  "Gestion de projet et coordination technique",
+];
+
 const skills = [
-  "Supervision : Elastic Stack, Elasticsearch, Kibana, Logstash, KQL, ES|QL et Lucene",
-  "Observabilité : OMi, BMC Control-M, Operations Orchestration et ServiceNow",
-  "Automatisation : Elastic Transforms, Watcher, Machine Learning et Ansible",
-  "DevOps et systèmes : Git, GitLab, GitHub, Docker, Vagrant, VirtualBox, Unix/Linux et Azure",
-  "Développement : Python, Shell/ksh, Java, C, Ruby, JavaScript, PHP, Django et Android",
-  "Données : MySQL, Oracle, PostgreSQL, MariaDB, Pandas, Power BI et Power Query",
+  "Données et BI : SQL, Python, Pandas, Power BI, Excel / Power Query, NLP",
+  "Bases de données : Oracle, MySQL, PostgreSQL, MariaDB",
+  "Écosystème Elastic : Elasticsearch, Kibana, Logstash, Transforms, Watcher, Elastic ML, KQL, ES|QL, Lucene",
+  "Supervision et exploitation SI : OMi, BMC Control-M, Operations Orchestration, ServiceNow",
+  "DevOps, systèmes et cloud : Git, GitLab, GitHub, Ansible, Docker, Vagrant, VirtualBox, Unix / Linux, Azure",
+  "Programmation : Java, C, Ruby, Shell / KSH, JavaScript, PHP, Django, Android",
 ];
 
 const qualities = [
@@ -29,38 +37,33 @@ const qualities = [
   "Adaptabilité et curiosité",
 ];
 
-const passionateAboutTech = true;
 const engineeringDegreeCompleted = false;
 const graduationYear = 2027;
-
-// Ces variables restent un exemple de style dynamique avec Astro.
-const skillColor = "var(--color-primary, #2457d6)";
-const fontWeight = "700";
-const textCase = "none";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <div class="about-page container">
     <section class="about-intro" aria-labelledby="about-intro-title">
       <div data-reveal="left">
-        <p class="eyebrow">Profil · Production · Observabilité</p>
+        <p class="eyebrow">Profil · Données · Besoins métier</p>
         <h2 id="about-intro-title">
-          Je rends les systèmes d’information plus fiables, observables et efficaces.
+          Je transforme les besoins métier en indicateurs fiables et utiles à la décision.
         </h2>
       </div>
 
       <div class="about-intro__copy" data-reveal="right">
         <p>
-          Je m’appelle {identity.firstName}. Basé à {identity.city}, je suis {identity.occupation.toLowerCase()}.
-          Depuis septembre 2025, je travaille en alternance chez CNP Assurances sur la supervision
-          des services et l’analyse des incidents.
+          Je m’appelle {identity.firstName}. Basé à {identity.city}, je suis élève-ingénieur à l’ESEO,
+          spécialisé en informatique et systèmes d’information. Depuis septembre 2025, je suis en
+          alternance chez CNP Assurances, où j’associe analyse de données et compréhension du métier
+          de l’assurance vie.
         </p>
-        {passionateAboutTech && (
-          <p>
-            Je m’oriente vers le Site Reliability Engineering (SRE) : détecter les anomalies,
-            automatiser les contrôles et améliorer la disponibilité des services numériques.
-          </p>
-        )}
+        <p>
+          Je comprends les parcours de gestion des contrats et les besoins des équipes, puis j’exploite
+          les données pour suivre les opérations, identifier les anomalies et fournir des indicateurs
+          utiles à leur prise en charge. Je recherche un premier emploi de Data / Business Analyst à
+          partir de septembre {graduationYear}.
+        </p>
       </div>
     </section>
 
@@ -77,10 +80,10 @@ const textCase = "none";
     <section class="about-grid" aria-label="Parcours et compétences">
       <article class="panel panel--accent" data-reveal="left">
         <p class="eyebrow">En quelques mots</p>
-        <h2>Un profil polyvalent</h2>
+        <h2>Un profil data et métier</h2>
         <p>
-          Mon parcours associe une formation scientifique à l’ESEO, une expérience en analyse
-          de données et une alternance en production et observabilité chez CNP Assurances.
+          Mon parcours associe une formation scientifique à l’ESEO, un stage de Data Analyst
+          et une alternance de deux ans dans l’assurance vie chez CNP Assurances.
         </p>
         <dl class="profile-facts">
           <div>
@@ -94,6 +97,10 @@ const textCase = "none";
           <div>
             <dt>Diplôme visé</dt>
             <dd>{graduationYear}</dd>
+          </div>
+          <div>
+            <dt>Recherche</dt>
+            <dd>Premier emploi dès septembre {graduationYear}</dd>
           </div>
           <div>
             <dt>Mobilité</dt>
@@ -115,9 +122,12 @@ const textCase = "none";
       </article>
 
       <article id="competences" class="panel" data-reveal="right">
-        <p class="eyebrow">Compétences techniques</p>
+        <p class="eyebrow">Compétences et outils</p>
         <h2>Ma boîte à outils</h2>
-        <ul class="skill-list">
+        <ul class="competency-list">
+          {competencies.map((competency) => <li>{competency}</li>)}
+        </ul>
+        <ul class="skill-list" aria-label="Outils informatiques">
           {skills.map((skill) => <li class="skill">{skill}</li>)}
         </ul>
       </article>
@@ -136,11 +146,14 @@ const textCase = "none";
           <div>
             <p class="eyebrow">CNP Assurances · Angers</p>
             <h3>Ingénieur production et observabilité en alternance</h3>
+            <p class="career-item__focus">Mission : analyse de données métier</p>
             <ul>
-              <li>Supervision des traitements d’un SI hybride mainframe et Unix, avec BMC Control-M et Elastic Stack.</li>
-              <li>Construction d’indicateurs d’activité et de contrôles pour repérer les écarts, les variations inhabituelles et les absences de flux.</li>
-              <li>Amélioration de la traçabilité avec Logstash, Elastic Machine Learning et des vues de supervision adaptées aux équipes.</li>
-              <li>Contribution à la gestion des incidents et à l’industrialisation des évolutions avec OMi, ServiceNow, GitLab et Ansible.</li>
+              <li>Analyse des parcours de gestion des contrats d’assurance vie (produits, codes programmes, actes de gestion) avec les équipes métier, pour définir les données à exploiter et les indicateurs de suivi.</li>
+              <li>Collecte de données issues de plusieurs bases Oracle par requêtes SQL et pipelines Logstash, pour suivre chaque demande client étape par étape.</li>
+              <li>Conception de Data Views et de tableaux de bord Kibana sur les volumes de contrats, les montants, les blocages et les ruptures de flux, avec identification des contrats impactés et de leurs erreurs.</li>
+              <li>Détection d’anomalies avec Elastic Machine Learning et Transforms : variations anormales des volumes et des montants, contrôle qualité ciblé sur l’absence de RIB lors d’un rachat partiel.</li>
+              <li>Restitution aux métiers : alertes Watcher vers Teams et OMi, vues OMi adaptées à chaque équipe, formation des utilisateurs à la qualification des anomalies jusqu’au ticket ServiceNow.</li>
+              <li>Livraison avec les équipes DevOps : tests et migrations entre environnements, versionnement GitLab, préparation des déploiements Ansible selon les standards internes.</li>
             </ul>
             <a class="text-link" href="/posts/post-5/">Lire mon retour d’expérience chez CNP <span aria-hidden="true">↗</span></a>
           </div>
@@ -149,12 +162,13 @@ const textCase = "none";
         <article class="career-item" data-reveal>
           <p class="career-item__date">Juillet–août 2024</p>
           <div>
-            <p class="eyebrow">Groupe KIM · Yaoundé</p>
-            <h3>Data Analyst Junior</h3>
+            <p class="eyebrow">Groupe KIM Cameroun · Yaoundé</p>
+            <h3>Data Analyst junior en stage</h3>
             <ul>
-              <li>Extraction et transformation de plus de 500 000 lignes MySQL avec Python et Pandas.</li>
-              <li>Création de trois tableaux de bord Power BI pour l’analyse métier.</li>
-              <li>Automatisation de rapports réduisant le temps d’analyse de 30 %, avec une expérimentation NLP.</li>
+              <li>Extraction et transformation de plus de 500 000 lignes de données MySQL avec Python et Pandas.</li>
+              <li>Création de 3 tableaux de bord dynamiques sous Power BI pour l’analyse métier.</li>
+              <li>Automatisation de rapports sous Excel (Power Query), réduisant le temps d’analyse de 30 %.</li>
+              <li>Extraction automatique de données numérisées et résumé de comptes rendus avec le NLP.</li>
             </ul>
           </div>
         </article>
@@ -199,7 +213,7 @@ const textCase = "none";
         </p>
       </article>
 
-      <article id="formation" class="panel panel--soft" data-reveal="right">
+      <article id="formation" class="panel" data-reveal="right">
         <p class="eyebrow">Formation</p>
         <h2>Un parcours scientifique et technique</h2>
         <ol class="education-list">
@@ -229,7 +243,7 @@ const textCase = "none";
         </ul>
       </article>
 
-      <article class="panel panel--soft" data-reveal="right">
+      <article class="panel" data-reveal="right">
         <p class="eyebrow">Certification</p>
         <h2>Gestion de projet</h2>
         <p>MOOC de gestion de projet, en complément des méthodes agiles et de la coordination technique pratiquées en équipe.</p>
@@ -258,12 +272,4 @@ const textCase = "none";
       </p>
     </section>
   </div>
-
-  <style define:vars={{ skillColor, fontWeight, textCase }}>
-    .skill {
-      color: var(--skillColor);
-      font-weight: var(--fontWeight);
-      text-transform: var(--textCase);
-    }
-  </style>
 </BaseLayout>
