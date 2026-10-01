@@ -3,7 +3,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://portfolio-moise-kinyok.netlify.app',
+  site: 'https://stephanemk.github.io',
   fonts: [
     {
       name: 'Fraunces',
