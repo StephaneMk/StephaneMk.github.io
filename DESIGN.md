@@ -6,6 +6,10 @@ Source de vérité visuelle du site. Les tokens vivent dans `src/styles/global.c
 
 Éditorial et sobre : grands titres serif, beaucoup d’espace, un seul accent. Le ton est professionnel (vouvoiement du visiteur, « je » pour l’auteur), sans points d’exclamation.
 
+## Emblème
+
+Monogramme « mk » en Fraunces italique suivi d’un point rose, dans un carré aux coins arrondis (composant `src/components/Emblem.astro`, favicons dans `public/`). Trois versions : marine (principale), crème (sur fond sombre), accent (usage ponctuel). Taille minimale 24 px, zone de protection d’un quart de sa largeur. Le guide complet est publié sur `/brand/`.
+
 ## Typographie
 
 - Titres : **Fraunces** (`--serif`), poids 400, italique pour l’emphase (`<em>`), interlettrage négatif.
