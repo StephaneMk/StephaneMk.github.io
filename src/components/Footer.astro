@@ -4,25 +4,40 @@ import Social from './Social.astro';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
+<footer class="site-footer on-dark">
   <div class="container footer-grid">
     <div>
       <p class="eyebrow">Restons en contact</p>
-      <h2>Des systèmes fiables, observables et bien construits.</h2>
+      <h2>Parlons d’une idée, d’un projet ou de technologie.</h2>
       <p>
-        Retrouvez mon parcours en production et observabilité, mes projets et mes
-        nouvelles publications.
+        Une opportunité de Data / Business Analyst à partir de septembre 2027,
+        une question sur mon parcours ou un projet ? Écrivez-moi.
       </p>
+      <div class="button-row footer-actions">
+        <a class="button button--accent" href="mailto:stephanekinyok26@gmail.com">
+          Me contacter <span aria-hidden="true">↗</span>
+        </a>
+        <a
+          class="text-link"
+          href="/cv-moise-stephane-kinyok.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Consulter mon CV (PDF) <span aria-hidden="true">↗</span>
+          <span class="sr-only"> (nouvel onglet)</span>
+        </a>
+      </div>
     </div>
 
     <nav class="social-links" aria-label="Réseaux et contacts">
-      <Social href="mailto:stephanekinyok26@gmail.com" label="E-mail" />
       <Social href="https://github.com/StephaneMk" label="GitHub" />
       <Social href="https://www.linkedin.com/in/stephane-kinyok" label="LinkedIn" />
+      <Social href="/rss.xml" label="Flux RSS" />
     </nav>
   </div>
 
   <div class="container footer-bottom">
     <p>© {currentYear} Moïse Stéphane KINYOK</p>
+    <a href="#main-content">Retour en haut <span aria-hidden="true">↑</span></a>
   </div>
 </footer>

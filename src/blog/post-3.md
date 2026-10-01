@@ -3,10 +3,10 @@ title: Mon projet d'architecture des systèmes d'information
 author: Moïse Stéphane KINYOK
 description: "De la modélisation Merise à une application PHP connectée à une base MySQL optimisée."
 image:
-    url: "/images/eseo-developpement-4k.jpeg"
+    url: "../assets/images/eseo-developpement-4k.jpeg"
     alt: "Photographie d'un environnement de développement logiciel affichant du code sur plusieurs écrans."
 logo:
-    url: "/images/eseo.svg.png"
+    url: "../assets/images/eseo.svg.png"
     alt: "Logo de l'ESEO."
 pubDate: 2026-08-26
 tags: ["systèmes d'information", "merise", "mysql", "php"]

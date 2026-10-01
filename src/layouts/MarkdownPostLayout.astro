@@ -1,5 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  frontmatter: CollectionEntry<'blog'>['data'];
+}
 
 const { frontmatter } = Astro.props;
 
@@ -39,16 +45,21 @@ const formattedDate = frontmatter.pubDate.toLocaleDateString('fr-FR', {
         </div>
 
         <div class="article-media" data-reveal="right">
-          <img
+          <Image
             class="article-image"
             src={frontmatter.image.url}
             alt={frontmatter.image.alt}
+            widths={[640, 960, 1400]}
+            sizes="(min-width: 64rem) 45vw, 100vw"
+            loading="eager"
+            fetchpriority="high"
           />
           {frontmatter.logo && (
-            <img
+            <Image
               class="article-logo"
               src={frontmatter.logo.url}
               alt={frontmatter.logo.alt}
+              width={200}
             />
           )}
         </div>

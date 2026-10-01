@@ -1,4 +1,6 @@
 ---
+import { Font, getImage } from 'astro:assets';
+import heroImage from '../assets/images/hero-ingenierie-informatique.jpg';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -13,7 +15,7 @@ interface Props {
 
 const {
   pageTitle,
-  description = "Portfolio et blog de Moïse Stéphane KINYOK, étudiant ingénieur à l’ESEO et alternant en production et observabilité chez CNP Assurances.",
+  description = "Portfolio et blog de Moïse Stéphane KINYOK, élève-ingénieur à l’ESEO et Data / Business Analyst en alternance chez CNP Assurances.",
   showPageTitle = true,
   eyebrow,
   pageClass = '',
@@ -22,6 +24,9 @@ const {
 const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : undefined;
+
+const ogImage = await getImage({ src: heroImage, width: 1200, format: 'jpg' });
+const ogImageURL = new URL(ogImage.src, Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
@@ -31,14 +36,30 @@ const canonicalURL = Astro.site
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0b2a55" />
+    <meta name="theme-color" content="#f5f0e7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#07172d" media="(prefers-color-scheme: dark)" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     <link rel="alternate" type="application/rss+xml" title="Flux RSS de Moïse Stéphane KINYOK" href="/rss.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <Font cssVariable="--font-display" preload />
+    <Font cssVariable="--font-body" preload />
+    <script is:inline>
+      // Applique le thème avant le premier affichage pour éviter un flash.
+      (() => {
+        let stored = '';
+        try { stored = localStorage.getItem('theme') ?? ''; } catch {}
+        const dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
     <title>{pageTitle}</title>
   </head>
 
