@@ -1,0 +1,75 @@
+---
+interface Props {
+  variant?: 'navy' | 'cream' | 'accent';
+  size?: number;
+  title?: string;
+}
+
+const { variant = 'navy', size = 64, title } = Astro.props;
+---
+
+<svg
+  class={`emblem emblem--${variant}`}
+  width={size}
+  height={size}
+  viewBox="0 0 64 64"
+  role={title ? 'img' : undefined}
+  aria-hidden={title ? undefined : 'true'}
+>
+  {title && <title>{title}</title>}
+  <rect width="64" height="64" rx="14" class="emblem__tile" />
+  <text x="9" y="43" class="emblem__mark">mk</text>
+  <circle cx="52.5" cy="40.5" r="4" class="emblem__dot" />
+</svg>
+
+<style>
+  .emblem {
+    display: block;
+    flex: 0 0 auto;
+  }
+
+  .emblem__mark {
+    font-family: var(--serif);
+    font-size: 31px;
+    font-style: italic;
+    letter-spacing: -0.04em;
+  }
+
+  .emblem--navy .emblem__tile {
+    fill: var(--navy);
+  }
+
+  .emblem--navy .emblem__mark {
+    fill: #f8f3ea;
+  }
+
+  .emblem--navy .emblem__dot {
+    fill: var(--accent-bright);
+  }
+
+  .emblem--cream .emblem__tile {
+    fill: #f5f0e7;
+    stroke: #d9d6cf;
+    stroke-width: 1;
+  }
+
+  .emblem--cream .emblem__mark {
+    fill: #0a1830;
+  }
+
+  .emblem--cream .emblem__dot {
+    fill: var(--accent-deep);
+  }
+
+  .emblem--accent .emblem__tile {
+    fill: var(--accent-deep);
+  }
+
+  .emblem--accent .emblem__mark {
+    fill: #ffffff;
+  }
+
+  .emblem--accent .emblem__dot {
+    fill: var(--navy);
+  }
+</style>

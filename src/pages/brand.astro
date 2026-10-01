@@ -1,0 +1,844 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Emblem from '../components/Emblem.astro';
+import portrait from '../assets/images/kim.jpeg';
+
+const version = '1.0';
+const updated = '1er octobre 2026';
+
+const presence = [
+  { name: 'Portfolio', detail: 'stephanemk.github.io', href: '/', status: 'En ligne' },
+  { name: 'Profil GitHub', detail: 'github.com/StephaneMk', href: 'https://github.com/StephaneMk', status: 'En ligne' },
+  { name: 'Profil GitLab', detail: 'gitlab.com/stephanekinyok26', href: 'https://gitlab.com/stephanekinyok26', status: 'En ligne' },
+  { name: 'LinkedIn', detail: 'linkedin.com/in/stephane-kinyok', href: 'https://www.linkedin.com/in/stephane-kinyok', status: 'À aligner' },
+  { name: 'CV', detail: 'Version Data / Business Analyst', href: '/cv-moise-stephane-kinyok.pdf', status: 'À aligner' },
+];
+
+const method = [
+  { verb: 'Comprendre', text: 'Partir de la question d’une équipe : son parcours de gestion, ses produits, ses actes, ses contraintes.' },
+  { verb: 'Trouver', text: 'Identifier la donnée qui y répond : dans quelle base, quelle table, quel champ.' },
+  { verb: 'Construire', text: 'Collecter, fiabiliser et transformer la donnée en un indicateur lisible.' },
+  { verb: 'Diffuser', text: 'Mettre l’indicateur entre les mains des équipes : tableau de bord, alerte, vue métier, formation.' },
+];
+
+const colors = [
+  { name: 'Marine', token: '--navy', hex: '#071c39', role: 'Hero, en-têtes de page, carte mise en avant', contrast: 'Blanc dessus 17:1', dark: true },
+  { name: 'Marine profond', token: '--navy-deep', hex: '#041328', role: 'Pied de page, visuels de projets', contrast: 'Blanc dessus 18,6:1', dark: true },
+  { name: 'Rose profond', token: '--accent-deep', hex: '#c81d63', role: 'Accent sur clair, fond des boutons', contrast: '4,9:1 sur crème · blanc dessus 5,5:1', dark: true },
+  { name: 'Rose vif', token: '--accent-bright', hex: '#ff6aa8', role: 'Accent sur fond sombre', contrast: '6,4:1 sur marine', dark: false },
+  { name: 'Crème', token: '--cream', hex: '#f5f0e7', role: 'Fond de page', contrast: 'Encre dessus 15,6:1', dark: false },
+  { name: 'Surface', token: '--surface', hex: '#fffdf9', role: 'Cartes et panneaux', contrast: 'Encre dessus 17,4:1', dark: false },
+  { name: 'Encre', token: '--ink', hex: '#0a1830', role: 'Texte principal', contrast: '15,6:1 sur crème', dark: true },
+  { name: 'Gris', token: '--muted', hex: '#5c6574', role: 'Texte secondaire', contrast: '5,2:1 sur crème', dark: true },
+  { name: 'Filet', token: '--line', hex: '#d9d6cf', role: 'Bordures et séparateurs (décoratif)', contrast: 'Non porteur de texte', dark: false },
+];
+
+const typeScale = [
+  { label: 'Titre hero', spec: 'Fraunces 400 · jusqu’à 144 px · interlignage 0,78', sample: 'Éclairer.', className: 'type-sample--hero' },
+  { label: 'Titre de section', spec: 'Fraunces 400 · jusqu’à 102 px · interlettrage −4,5 %', sample: 'Mon terrain de jeu', className: 'type-sample--h2' },
+  { label: 'Titre de carte', spec: 'Fraunces 400 · jusqu’à 38 px', sample: 'Suivi par contrat', className: 'type-sample--h3' },
+  { label: 'Texte courant', spec: 'Geist 400 · 16 px · interlignage 1,65', sample: 'Je traduis les besoins des équipes métier en indicateurs utiles à la décision.', className: 'type-sample--body' },
+  { label: 'Sur-titre', spec: 'Geist 800 · 11,7 px · capitales · interlettrage +18 %', sample: 'Données · Besoins métier', className: 'type-sample--eyebrow' },
+];
+
+const always = [
+  'Un seul accent : le rose, en version profonde sur clair et vive sur sombre.',
+  'Haut de page sombre, contenu crème, pied de page sombre.',
+  'Titres en Fraunces, texte et interface en Geist.',
+  'Des faits vérifiables : outils nommés, chiffres réels, rôle exact (« mis en place » ou « participé »).',
+  'Vouvoiement du visiteur, « je » pour parler de mon travail, phrases en casse normale.',
+  'Contrastes conformes AA pour tout texte.',
+];
+
+const never = [
+  'De bleu, de cyan ou de dégradé violet décoratif.',
+  'De section colorée isolée au milieu d’une page claire.',
+  'D’effet de survol sur un élément qui n’est pas cliquable.',
+  'De noms internes de projets, d’équipes ou d’applications de mon employeur.',
+  'De chiffres arrondis ou inventés, ni de points d’exclamation.',
+  'D’emblème déformé, recoloré hors palette ou placé sur un fond chargé.',
+];
+---
+
+<BaseLayout
+  pageTitle="Identité de marque | Moïse Stéphane KINYOK"
+  description="Le guide d’identité de Moïse Stéphane KINYOK, Data / Business Analyst : promesse, méthode, emblème, couleurs, typographie, composants et règles."
+  showPageTitle={false}
+  pageClass="brand-page"
+>
+  <header class="brand-hero on-dark">
+    <div class="container brand-hero__grid">
+      <div class="brand-hero__copy">
+        <p class="eyebrow">Identité de marque · version {version} · {updated}</p>
+        <h1>Traduire les besoins métier en indicateurs <em>fiables.</em></h1>
+        <p class="brand-hero__lead">
+          Ce guide rassemble tout ce qui fait mon identité professionnelle : ma promesse, ma méthode
+          de travail et les règles visuelles appliquées à mon portfolio, à mes profils et à mon CV.
+        </p>
+        <nav class="brand-hero__links" aria-label="Mes profils">
+          <a class="button button--accent" href="/">Portfolio <span aria-hidden="true">↗</span></a>
+          <a class="social-link" href="https://github.com/StephaneMk" target="_blank" rel="noreferrer">GitHub<span class="sr-only"> (nouvel onglet)</span></a>
+          <a class="social-link" href="https://gitlab.com/stephanekinyok26" target="_blank" rel="noreferrer">GitLab<span class="sr-only"> (nouvel onglet)</span></a>
+          <a class="social-link" href="https://www.linkedin.com/in/stephane-kinyok" target="_blank" rel="noreferrer">LinkedIn<span class="sr-only"> (nouvel onglet)</span></a>
+        </nav>
+      </div>
+
+      <figure class="brand-id">
+        <Image class="brand-id__photo" src={portrait} alt="Portrait de Moïse Stéphane KINYOK." width={320} loading="eager" />
+        <figcaption>
+          <Emblem size={44} />
+          <span>
+            <strong>Moïse Stéphane KINYOK</strong>
+            <small>Data / Business Analyst · alternant chez CNP Assurances</small>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <div class="container brand-body">
+    <section class="brand-section" aria-labelledby="presence-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">01 / En un coup d’œil</p>
+        <h2 id="presence-title">Une identité, cinq points de contact</h2>
+        <p>Le même positionnement et la même direction artistique partout où un recruteur me découvre.</p>
+      </div>
+      <ul class="presence-grid">
+        {presence.map((item) => (
+          <li>
+            <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer' : undefined}>
+              <span class:list={['presence-status', { 'presence-status--todo': item.status !== 'En ligne' }]}>{item.status}</span>
+              <strong>{item.name}</strong>
+              <span>{item.detail}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="brand-section" aria-labelledby="method-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">02 / La méthode</p>
+        <h2 id="method-title">Quatre verbes, du besoin à l’usage</h2>
+        <p>Chaque mission suit la même boucle : elle commence par une question métier et se termine entre les mains d’une équipe.</p>
+      </div>
+      <ol class="method-grid">
+        {method.map((step, index) => (
+          <li>
+            <span class="method-grid__number">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{step.verb}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="brand-section" aria-labelledby="emblem-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">03 / L’emblème</p>
+        <h2 id="emblem-title">Un monogramme et un point</h2>
+        <p>
+          Mes initiales en Fraunces italique, suivies d’un point rose : le même point qui ferme
+          « Éclairer. » sur mon portfolio. Il signe une conclusion claire.
+        </p>
+      </div>
+      <div class="emblem-grid">
+        <figure><div class="emblem-stage emblem-stage--light"><Emblem size={112} title="Emblème marine" /></div><figcaption><strong>Marine</strong> Version principale, sur fond clair.</figcaption></figure>
+        <figure><div class="emblem-stage emblem-stage--dark"><Emblem variant="cream" size={112} title="Emblème crème" /></div><figcaption><strong>Crème</strong> Sur fond sombre ou photo foncée.</figcaption></figure>
+        <figure><div class="emblem-stage emblem-stage--light"><Emblem variant="accent" size={112} title="Emblème rose" /></div><figcaption><strong>Accent</strong> Usage ponctuel : avatar, favicon, badge.</figcaption></figure>
+      </div>
+      <ul class="rule-list">
+        <li><strong>Taille minimale</strong> 24 px de côté à l’écran.</li>
+        <li><strong>Zone de protection</strong> un quart de la largeur de l’emblème tout autour.</li>
+        <li><strong>Forme fixe</strong> carré aux coins arrondis, jamais étiré ni pivoté.</li>
+      </ul>
+    </section>
+
+    <section class="brand-section" aria-labelledby="colors-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">04 / Couleurs</p>
+        <h2 id="colors-title">Bleu nuit, crème et un seul accent</h2>
+        <p>Des neutres bleu nuit pour la rigueur, une base crème pour la lisibilité, et le rose pour guider l’œil vers l’essentiel.</p>
+      </div>
+      <ul class="swatch-grid">
+        {colors.map((color) => (
+          <li>
+            <span class:list={['swatch', { 'swatch--dark': color.dark }]} style={`background:${color.hex}`}>{color.hex}</span>
+            <strong>{color.name}</strong>
+            <code>{color.token}</code>
+            <span>{color.role}</span>
+            <span class="swatch-contrast">{color.contrast}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="brand-section" aria-labelledby="type-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">05 / Typographie</p>
+        <h2 id="type-title">Une serif expressive, une sans-serif précise</h2>
+        <p>Fraunces porte la voix éditoriale des titres. Geist garde le texte et l’interface nets et lisibles.</p>
+      </div>
+      <div class="type-pair">
+        <div><span class="type-pair__glyph type-pair__glyph--serif">Aa</span><strong>Fraunces</strong><span>Titres · 400 et 600 · italique pour l’emphase</span></div>
+        <div><span class="type-pair__glyph type-pair__glyph--sans">Aa</span><strong>Geist</strong><span>Texte et interface · 400 à 800</span></div>
+      </div>
+      <ul class="type-scale">
+        {typeScale.map((row) => (
+          <li>
+            <div><strong>{row.label}</strong><span>{row.spec}</span></div>
+            <p class:list={['type-sample', row.className]}>{row.sample}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="brand-section" aria-labelledby="components-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">06 / Composants</p>
+        <h2 id="components-title">Les briques de l’interface</h2>
+        <p>Les mêmes éléments sur toutes les pages : un bouton principal, des liens texte, des pastilles neutres et des étapes numérotées.</p>
+      </div>
+      <div class="component-grid">
+        <div class="component-card">
+          <p class="component-card__label">Actions</p>
+          <div class="component-row">
+            <a class="button button--accent" href="mailto:stephanekinyok26@gmail.com">Me contacter <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="/about/">Lire mon parcours <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="component-card">
+          <p class="component-card__label">Sur-titres et pastilles</p>
+          <p class="eyebrow">CNP Assurances · Angers</p>
+          <p class="section-kicker">02 / Expertises</p>
+          <ul class="mini-tags" aria-label="Exemple de pastilles">
+            <li>SQL Oracle</li><li>Kibana</li><li>Elastic ML</li><li>Power BI</li>
+          </ul>
+        </div>
+        <figure class="chain component-card--wide">
+          <figcaption>Étapes numérotées</figcaption>
+          <ol>
+            <li><strong>Besoin métier</strong><span>On part de la question de l’équipe</span></li>
+            <li><strong>Donnée</strong><span>Requête, pipeline, index</span></li>
+            <li class="chain__result"><strong>Résultat</strong><span>Un indicateur utilisé par l’équipe</span></li>
+          </ol>
+        </figure>
+      </div>
+    </section>
+
+    <section class="brand-section" aria-labelledby="rules-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">07 / Règles</p>
+        <h2 id="rules-title">Ce qui ne bouge pas</h2>
+        <p>Les règles qui gardent l’identité cohérente, page après page et profil après profil.</p>
+      </div>
+      <div class="do-dont">
+        <div>
+          <h3>Toujours</h3>
+          <ul>{always.map((rule) => <li>{rule}</li>)}</ul>
+        </div>
+        <div>
+          <h3>Jamais</h3>
+          <ul>{never.map((rule) => <li>{rule}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-section" aria-labelledby="tokens-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">08 / Tokens</p>
+        <h2 id="tokens-title">La référence technique</h2>
+        <p>Les valeurs utilisées dans le code du portfolio (<code>src/styles/global.css</code>), avec leur contraste mesuré.</p>
+      </div>
+      <div class="token-table">
+        <table>
+          <thead>
+            <tr><th scope="col">Token</th><th scope="col">Clair</th><th scope="col">Sombre</th><th scope="col">Usage</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>--cream</code></td><td>#f5f0e7</td><td>#07172d</td><td>Fond de page</td></tr>
+            <tr><td><code>--surface</code></td><td>#fffdf9</td><td>#0b2142</td><td>Cartes et panneaux</td></tr>
+            <tr><td><code>--ink</code></td><td>#0a1830</td><td>#f8f3ea</td><td>Texte principal (15,6:1 et 15,4:1)</td></tr>
+            <tr><td><code>--muted</code></td><td>#5c6574</td><td>#b9c4d4</td><td>Texte secondaire (5,2:1 et 9,6:1)</td></tr>
+            <tr><td><code>--line</code></td><td>#d9d6cf</td><td>#22395a</td><td>Bordures et séparateurs</td></tr>
+            <tr><td><code>--pink</code></td><td>#c81d63</td><td>#ff6aa8</td><td>Accent (4,9:1 et 6,4:1)</td></tr>
+            <tr><td><code>--navy</code></td><td colspan="2">#071c39</td><td>Zones toujours sombres</td></tr>
+            <tr><td><code>--radius-lg</code></td><td colspan="2">1,5 rem</td><td>Cartes</td></tr>
+            <tr><td><code>--radius-md</code></td><td colspan="2">1 rem</td><td>Pastilles multilignes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .brand-hero {
+    padding: clamp(4rem, 9vw, 7rem) 0;
+    background:
+      radial-gradient(circle at 85% 20%, rgb(255 106 168 / 18%), transparent 35%),
+      linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: rgb(255 255 255 / 78%);
+  }
+
+  .brand-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(16rem, 0.7fr);
+    align-items: center;
+    gap: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .brand-hero h1 {
+    margin: 1.2rem 0 1.5rem;
+    color: white;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+  }
+
+  .brand-hero h1 em {
+    color: var(--pink);
+  }
+
+  .brand-hero__lead {
+    max-width: 38rem;
+    font-size: 1.1rem;
+  }
+
+  .brand-hero__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .brand-id {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 18%);
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 4%);
+  }
+
+  .brand-id__photo {
+    width: 100%;
+    aspect-ratio: 4 / 4.4;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  .brand-id figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .brand-id figcaption span {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .brand-id strong {
+    color: white;
+    font-family: var(--serif);
+    font-size: 1.05rem;
+  }
+
+  .brand-id small {
+    font-size: 0.78rem;
+  }
+
+  .brand-body {
+    padding-bottom: clamp(5rem, 10vw, 8rem);
+  }
+
+  .brand-section {
+    padding-top: clamp(4.5rem, 9vw, 7rem);
+  }
+
+  .brand-section + .brand-section {
+    margin-top: clamp(4.5rem, 9vw, 7rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .brand-section__head {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.3fr) minmax(0, 1fr);
+    gap: 0.8rem 2rem;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .brand-section__head h2 {
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+  }
+
+  .brand-section__head > p:last-child {
+    grid-column: 2;
+    max-width: 44rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .presence-grid,
+  .method-grid,
+  .swatch-grid,
+  .type-scale,
+  .rule-list,
+  .do-dont ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .presence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1rem;
+  }
+
+  .presence-grid a {
+    display: grid;
+    gap: 0.35rem;
+    height: 100%;
+    padding: 1.3rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+
+  .presence-grid a:hover {
+    border-color: var(--pink);
+    transform: translateY(-3px);
+  }
+
+  .presence-grid strong {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  .presence-grid a > span:last-child {
+    color: var(--muted);
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+  }
+
+  .presence-status {
+    justify-self: start;
+    margin-bottom: 0.6rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background: var(--chip);
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .presence-status::before {
+    content: "";
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-right: 0.4rem;
+    border-radius: 50%;
+    background: #2f9e6b;
+  }
+
+  .presence-status--todo::before {
+    background: var(--pink);
+  }
+
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    counter-reset: none;
+  }
+
+  .method-grid li {
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .method-grid li:first-child {
+    --pink: var(--accent-bright);
+    border-color: transparent;
+    background: var(--navy);
+    color: rgb(255 255 255 / 75%);
+  }
+
+  .method-grid li:first-child h3 {
+    color: white;
+  }
+
+  .method-grid__number {
+    color: var(--pink);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  .method-grid h3 {
+    margin: 2.5rem 0 0.7rem;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+  }
+
+  .method-grid p {
+    font-size: 0.92rem;
+  }
+
+  .method-grid li:not(:first-child) p {
+    color: var(--muted);
+  }
+
+  .emblem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .emblem-grid figure {
+    margin: 0;
+  }
+
+  .emblem-stage {
+    display: grid;
+    min-height: 13rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .emblem-stage--light {
+    background: #fffdf9;
+  }
+
+  .emblem-stage--dark {
+    border-color: transparent;
+    background: #071c39;
+  }
+
+  .emblem-grid figcaption {
+    margin-top: 0.8rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .emblem-grid figcaption strong,
+  .rule-list strong {
+    display: block;
+    color: var(--ink);
+  }
+
+  .rule-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .rule-list li {
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: 1.5rem 1rem;
+  }
+
+  .swatch-grid li {
+    display: grid;
+    gap: 0.2rem;
+    font-size: 0.85rem;
+  }
+
+  .swatch {
+    display: flex;
+    align-items: flex-end;
+    min-height: 7rem;
+    margin-bottom: 0.6rem;
+    padding: 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    color: #0a1830;
+    font-family: ui-monospace, monospace;
+    font-size: 0.78rem;
+  }
+
+  .swatch--dark {
+    border-color: transparent;
+    color: #ffffff;
+  }
+
+  .swatch-grid strong {
+    color: var(--ink);
+    font-size: 1rem;
+  }
+
+  .swatch-grid code {
+    color: var(--muted);
+  }
+
+  .swatch-grid li > span:not(.swatch) {
+    color: var(--muted);
+  }
+
+  .swatch-contrast {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .type-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .type-pair > div {
+    display: grid;
+    gap: 0.2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .type-pair__glyph {
+    margin-bottom: 1rem;
+    color: var(--ink);
+    font-size: clamp(4rem, 9vw, 7rem);
+    line-height: 1;
+  }
+
+  .type-pair__glyph--serif {
+    font-family: var(--serif);
+    font-style: italic;
+  }
+
+  .type-pair__glyph--sans {
+    font-family: var(--sans);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+
+  .type-pair span:last-child {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .type-scale li {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.35fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem 2rem;
+    padding-block: 1.4rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .type-scale li > div {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .type-scale li > div span {
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  .type-sample {
+    margin: 0;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+
+  .type-sample--hero,
+  .type-sample--h2,
+  .type-sample--h3 {
+    font-family: var(--serif);
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+  }
+
+  .type-sample--hero {
+    color: var(--pink);
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-style: italic;
+  }
+
+  .type-sample--h2 {
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+  }
+
+  .type-sample--h3 {
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  }
+
+  .type-sample--eyebrow {
+    color: var(--pink);
+    font-size: 0.73rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .component-card {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .component-card__label {
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .component-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .component-card--wide {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .do-dont {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .do-dont > div {
+    padding: 1.6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .do-dont h3 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  .do-dont li {
+    position: relative;
+    padding: 0.7rem 0 0.7rem 1.8rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+  }
+
+  .do-dont li::before {
+    position: absolute;
+    left: 0;
+    font-weight: 800;
+  }
+
+  .do-dont > div:first-child li::before {
+    content: "✓";
+    color: #2f9e6b;
+  }
+
+  .do-dont > div:last-child li::before {
+    content: "✕";
+    color: var(--pink);
+  }
+
+  .token-table {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .token-table table {
+    width: 100%;
+    min-width: 36rem;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .token-table th,
+  .token-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+
+  .token-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .token-table th {
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .token-table td {
+    font-variant-numeric: tabular-nums;
+  }
+
+  code {
+    font-family: ui-monospace, "Cascadia Code", monospace;
+    font-size: 0.85em;
+  }
+
+  @media (max-width: 68rem) {
+    .method-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 50rem) {
+    .brand-hero__grid,
+    .brand-section__head,
+    .type-scale li,
+    .type-pair,
+    .component-grid,
+    .do-dont,
+    .emblem-grid,
+    .rule-list {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-section__head > p:last-child {
+      grid-column: 1;
+    }
+
+    .brand-id {
+      max-width: 22rem;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .method-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
