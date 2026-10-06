@@ -1,0 +1,144 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import cvPage from '../assets/cv/cv-page-1.png';
+
+const requestSubject = encodeURIComponent('Demande de CV : Moïse Stéphane KINYOK');
+const requestBody = encodeURIComponent(
+  'Bonjour Moïse Stéphane,\n\nJ’ai consulté votre portfolio et je souhaiterais recevoir votre CV au format PDF.\n\nCordialement,'
+);
+const requestHref = `mailto:stephanekinyok26@gmail.com?subject=${requestSubject}&body=${requestBody}`;
+---
+
+<BaseLayout
+  pageTitle="Mon CV"
+  description="CV de Moïse Stéphane KINYOK, Data / Business Analyst : consultation en ligne, PDF sur demande."
+  eyebrow="Data / Business Analyst · premier emploi dès septembre 2027"
+  noindex
+>
+  <section class="container cv-page" aria-labelledby="cv-title">
+    <div class="cv-intro">
+      <h2 id="cv-title">Consulter mon CV</h2>
+      <p>
+        Mon CV est consultable ici. Pour le recevoir au format PDF, écrivez-moi : je vous
+        l’envoie directement.
+      </p>
+      <div class="button-row">
+        <a class="button button--accent" href={requestHref}>
+          Demander mon CV en PDF <span aria-hidden="true">↗</span>
+        </a>
+        <a class="text-link" href="/about/">Voir mon parcours détaillé <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <figure class="cv-sheet" data-protected>
+      <Image
+        class="cv-sheet__image"
+        src={cvPage}
+        alt="CV de Moïse Stéphane KINYOK, Data / Business Analyst : profil, compétences techniques, expérience chez CNP Assurances et au Groupe KIM, projets ESEO, diplômes et certifications."
+        widths={[640, 960, 1300]}
+        sizes="(min-width: 64rem) 52rem, 100vw"
+        loading="eager"
+        draggable="false"
+      />
+      <div class="cv-sheet__shield" aria-hidden="true">
+        {Array.from({ length: 6 }, () => <span>stephanemk.github.io · consultation uniquement</span>)}
+      </div>
+    </figure>
+
+    <p class="cv-print-note">L’impression de cette page est désactivée. Demandez mon CV en PDF à stephanekinyok26@gmail.com.</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .cv-page {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3rem);
+    padding-block: clamp(4rem, 8vw, 6rem);
+  }
+
+  .cv-intro {
+    display: grid;
+    gap: 1.2rem;
+    max-width: 46rem;
+  }
+
+  .cv-intro h2 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+  }
+
+  .cv-intro p {
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .cv-intro .button-row {
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .cv-sheet {
+    position: relative;
+    width: min(100%, 52rem);
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: #ffffff;
+    box-shadow: var(--shadow);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  .cv-sheet__image {
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+
+  /* Calque au-dessus de l’image : il capte le clic droit et le glisser-déposer. */
+  .cv-sheet__shield {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: space-around;
+    justify-items: center;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .cv-sheet__shield span {
+    color: rgb(10 24 48 / 6%);
+    font-size: clamp(0.9rem, 2.4vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transform: rotate(-24deg);
+  }
+
+  .cv-print-note {
+    display: none;
+  }
+
+  @media print {
+    .cv-sheet,
+    .cv-intro .button-row {
+      display: none !important;
+    }
+
+    .cv-print-note {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  // Dissuasif uniquement : bloque le menu contextuel, le glisser-déposer et la copie sur le CV.
+  document.querySelectorAll<HTMLElement>('[data-protected]').forEach((sheet) => {
+    for (const type of ['contextmenu', 'dragstart', 'copy']) {
+      sheet.addEventListener(type, (event) => event.preventDefault());
+    }
+  });
+</script>

@@ -11,6 +11,7 @@ interface Props {
   showPageTitle?: boolean;
   eyebrow?: string;
   pageClass?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   showPageTitle = true,
   eyebrow,
   pageClass = '',
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = Astro.site
@@ -36,6 +38,7 @@ const ogImageURL = new URL(ogImage.src, Astro.site ?? Astro.url);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow, noimageindex" />}
     <meta name="theme-color" content="#f5f0e7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#07172d" media="(prefers-color-scheme: dark)" />
     <meta property="og:type" content="website" />
