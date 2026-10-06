@@ -1,0 +1,6 @@
+# Le site Netlify est désactivé : toutes ses adresses renvoient vers le portfolio officiel.
+[[redirects]]
+  from = "/*"
+  to = "https://stephanemk.github.io/:splat"
+  status = 301
+  force = true
