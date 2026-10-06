@@ -44,6 +44,7 @@ const requestHref = `mailto:stephanekinyok26@gmail.com?subject=${requestSubject}
       <div class="cv-sheet__shield" aria-hidden="true">
         {Array.from({ length: 6 }, () => <span>stephanemk.github.io · consultation uniquement</span>)}
       </div>
+      <div class="cv-sheet__veil" aria-hidden="true"><p>Cliquez sur la page pour afficher le CV</p></div>
     </figure>
 
     <p class="cv-print-note">L’impression de cette page est désactivée. Demandez mon CV en PDF à stephanekinyok26@gmail.com.</p>
@@ -82,6 +83,7 @@ const requestHref = `mailto:stephanekinyok26@gmail.com?subject=${requestSubject}
     width: min(100%, 52rem);
     margin: 0;
     overflow: hidden;
+    overflow: clip; /* clip, et non hidden, pour que le message du voile reste « sticky » */
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
     background: #ffffff;
@@ -118,6 +120,47 @@ const requestHref = `mailto:stephanekinyok26@gmail.com?subject=${requestSubject}
     transform: rotate(-24deg);
   }
 
+  /* Flou appliqué quand la fenêtre perd le focus (outil de capture, changement d’application). */
+  .cv-sheet__image {
+    transition: filter 0.2s ease;
+  }
+
+  .cv-sheet.is-veiled .cv-sheet__image {
+    filter: blur(18px);
+  }
+
+  .cv-sheet__veil {
+    position: absolute;
+    inset: 0;
+    padding: 1.5rem;
+    color: #0a1830;
+    font-weight: 700;
+    text-align: center;
+    background: rgb(255 255 255 / 55%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s;
+  }
+
+  .cv-sheet__veil p {
+    position: sticky;
+    top: 45vh;
+    margin: 0;
+    padding-block: 2rem;
+  }
+
+  .cv-sheet.is-veiled .cv-sheet__veil {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cv-sheet__image,
+    .cv-sheet__veil {
+      transition: none;
+    }
+  }
+
   .cv-print-note {
     display: none;
   }
@@ -140,5 +183,12 @@ const requestHref = `mailto:stephanekinyok26@gmail.com?subject=${requestSubject}
     for (const type of ['contextmenu', 'dragstart', 'copy']) {
       sheet.addEventListener(type, (event) => event.preventDefault());
     }
+
+    // Floute le CV dès que la page n’a plus le focus : Win+Maj+S, changement d’onglet ou d’application.
+    const update = () => sheet.classList.toggle('is-veiled', document.hidden || !document.hasFocus());
+    window.addEventListener('blur', update);
+    window.addEventListener('focus', update);
+    document.addEventListener('visibilitychange', update);
+    update();
   });
 </script>
