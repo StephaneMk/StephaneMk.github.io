@@ -1,7 +1,7 @@
 ---
 title: Mon projet d'architecture des systèmes d'information
 author: Moïse Stéphane KINYOK
-description: "De la modélisation Merise à une application PHP connectée à une base MySQL optimisée."
+description: "De la modélisation Merise (12 entités) à un schéma MySQL de 15 tables et 10 indicateurs de reporting en PHP."
 image:
     url: "../assets/images/eseo-developpement-4k.jpeg"
     alt: "Photographie d'un environnement de développement logiciel affichant du code sur plusieurs écrans."
@@ -15,14 +15,14 @@ Ce projet avait pour objectif de concevoir un système d'information complet, de
 
 ## Analyse et modélisation
 
-J'ai analysé les besoins métier, puis modélisé les données aux niveaux conceptuel, logique et physique avec la méthode Merise (MCD → MLD → MPD). Cette étape a structuré la base avant son implémentation.
+J'ai recueilli les besoins métier, puis modélisé les données sur les trois niveaux de la méthode Merise (MCD → MLD → MPD) : **12 entités** et une **vingtaine de règles de gestion** formalisées. Cette étape a structuré une base de données fiable, prête pour l'analyse.
 
 ## Conception de la base MySQL
 
-J'ai conçu une base MySQL avec clés primaires et étrangères, index ciblés, partitionnement et contraintes d'intégrité. Pour produire des indicateurs, j'ai écrit des requêtes avancées : `JOIN` multicritères, `GROUP BY` et fonctions de fenêtrage telles que `ROW_NUMBER()` et `SUM() OVER`.
+J'ai conçu et optimisé un schéma MySQL de **15 tables** : clés primaires et étrangères, index ciblés et partitionnement, pour garantir l'intégrité des données et la rapidité des requêtes. J'ai ensuite écrit une **trentaine de requêtes avancées** (`JOIN` multicritères, `GROUP BY`, fonctions de fenêtrage `ROW_NUMBER()` et `SUM() OVER`) pour calculer **10 indicateurs clés** du reporting.
 
 ## Développement de l'application web
 
-J'ai développé un front-end web en PHP pour les modules de reporting. Des procédures stockées et des déclencheurs `BEFORE`/`AFTER` ont automatisé les traitements métier et permis d'historiser les données.
+J'ai développé **4 modules de reporting web** en PHP. **6 procédures stockées** et **8 déclencheurs** `BEFORE`/`AFTER` automatisent les traitements métier et historisent les données pour suivre leur évolution dans le temps.
 
-Enfin, j'ai sécurisé les accès grâce aux requêtes paramétrées, à la validation côté serveur et à la gestion des rôles. Ce projet m'a permis de relier modélisation, performance, développement et sécurité dans un même système d'information.
+Enfin, j'ai sécurisé les accès sur **3 rôles utilisateurs**, avec des requêtes paramétrées contre les injections SQL et une validation côté serveur. Ce projet m'a permis de relier modélisation, performance, développement et sécurité dans un même système d'information.
