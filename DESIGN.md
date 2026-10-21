@@ -71,4 +71,4 @@ Visuels dans `src/assets/brand/`, présentés sur `/brand/`. Modèle HTML source
 
 ## Contact
 
-Un seul bloc de contact : le pied de page (bouton « Me contacter », CV, réseaux). Ne pas ajouter de bandeau de contact dans les pages.
+Un seul bloc de contact : le pied de page (bouton « Me contacter », réseaux). Le CV n’est pas publié sur le site. Ne pas ajouter de bandeau de contact dans les pages.
