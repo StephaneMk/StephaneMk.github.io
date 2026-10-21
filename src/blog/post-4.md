@@ -23,6 +23,6 @@ Ma formation aborde également les bases de données, les réseaux, le cloud, la
 
 Les projets réalisés pendant ma formation me permettent de relier la théorie à la pratique. J'ai notamment travaillé sur des infrastructures réseau, des bases de données relationnelles et des applications web sécurisées.
 
-En alternance, je pars des besoins des équipes métier pour construire des indicateurs avec SQL Oracle et la suite Elastic, et pour détecter des anomalies sur les contrats. Cette expérience confirme mon orientation vers le métier de Data / Business Analyst.
+En alternance, je pars des besoins des équipes métier pour construire des indicateurs utiles à leurs décisions. Cette expérience confirme mon orientation vers le métier de Data / Business Analyst.
 
 Mon objectif est d'obtenir mon diplôme d'ingénieur en 2027 et de contribuer à des systèmes d'information plus robustes, observables et efficaces.
