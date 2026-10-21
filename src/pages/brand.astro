@@ -2,9 +2,100 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Emblem from '../components/Emblem.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import portrait from '../assets/images/kim.jpeg';
+import supportBanner from '../assets/brand/support-banner.png';
+import supportReadme from '../assets/brand/support-readme.png';
+import supportPost from '../assets/brand/support-post.png';
+import supportSlide from '../assets/brand/support-slide.png';
+import supportCv from '../assets/brand/support-cv.png';
+import featuredGithub from '../assets/brand/selection-github.png';
+import featuredGitlab from '../assets/brand/selection-gitlab.png';
+import featuredBrand from '../assets/brand/selection-brand.png';
 
 const updated = '1er octobre 2026';
+
+const supports = [
+  { label: 'LinkedIn · bannière', size: '1584 × 396', image: supportBanner, layout: 'wide', widths: [800, 1584], sizes: '(min-width: 82rem) 80rem, 100vw', alt: 'Bannière LinkedIn marine : « Traduire les besoins métier en indicateurs fiables. », Data / Business Analyst, CNP Assurances, ESEO.' },
+  { label: 'GitHub et GitLab · en-tête de README', size: '1584 × 396', image: supportReadme, layout: 'wide', widths: [800, 1584], sizes: '(min-width: 82rem) 80rem, 100vw', alt: 'En-tête de README crème avec l’emblème mk., mon nom, mon poste et les quatre étapes de ma méthode.' },
+  { label: 'LinkedIn · post', size: '1080 × 1350', image: supportPost, layout: 'tall', widths: [540, 1080], sizes: '(min-width: 64rem) 30rem, 100vw', alt: 'Post LinkedIn : « La donnée est partout. Sa valeur commence quand elle devient fiable. », suivi de trois étapes numérotées.' },
+  { label: 'Présentation · diapositive', size: '1920 × 1080', image: supportSlide, layout: 'side', widths: [800, 1600], sizes: '(min-width: 64rem) 48rem, 100vw', alt: 'Diapositive « Du besoin métier à l’usage. » avec les quatre étapes de ma méthode en cartes.' },
+  { label: 'CV · en-tête A4', size: '1240 × 430', image: supportCv, layout: 'side', widths: [620, 1240], sizes: '(min-width: 64rem) 48rem, 100vw', alt: 'En-tête de CV : mon nom, Data / Business Analyst, une phrase de présentation et mes coordonnées professionnelles.' },
+];
+
+const featured = [
+  { title: 'Explorer mon GitHub', href: 'https://github.com/StephaneMk', image: featuredGithub, alt: 'Miniature « Explorer mon GitHub. » avec le logo GitHub.' },
+  { title: 'Explorer mon GitLab', href: 'https://gitlab.com/StephaneMk', image: featuredGitlab, alt: 'Miniature « Explorer mon GitLab. » avec le logo GitLab.' },
+  { title: 'Explorer ma marque', href: '/brand/', image: featuredBrand, alt: 'Miniature « Explorer ma marque. » avec l’emblème mk.' },
+];
+
+const scales = [
+  {
+    name: 'Marine',
+    note: 'Structure, titres, zones sombres',
+    steps: [
+      { label: 'Teinte', hex: '#f3f4f5', contrast: 'Fond' },
+      { label: 'Teinte forte', hex: '#e1e4e7', contrast: 'Fond' },
+      { label: 'Bordure', hex: '#c3c9cf', contrast: 'Décoratif' },
+      { label: 'Ligne', hex: '#778292', contrast: '3,9:1', dark: true },
+      { label: 'Signature', hex: '#071c39', contrast: '17:1', dark: true },
+      { label: 'Texte', hex: '#0a1830', contrast: '17,7:1', dark: true },
+    ],
+  },
+  {
+    name: 'Rose',
+    note: 'Accent unique : liens, boutons, résultat',
+    steps: [
+      { label: 'Teinte', hex: '#fcf4f7', contrast: 'Fond' },
+      { label: 'Teinte forte', hex: '#f8e4ec', contrast: 'Fond' },
+      { label: 'Bordure', hex: '#f2c9da', contrast: 'Décoratif' },
+      { label: 'Ligne', hex: '#e183a9', contrast: '2,6:1' },
+      { label: 'Signature', hex: '#c81d63', contrast: '5,5:1', dark: true },
+      { label: 'Texte', hex: '#a3134f', contrast: '7,6:1', dark: true },
+    ],
+  },
+];
+
+const projects = [
+  {
+    number: '01',
+    category: 'Automatisation & data',
+    title: 'Agent de suivi des prix Ryanair',
+    description: 'Un agent Python qui surveille des itinéraires, compare les prix et déclenche une alerte lorsqu’un tarif cible ou une baisse significative est détecté.',
+    tags: ['Python', 'Playwright', 'SerpAPI', 'Pytest'],
+    mark: 'FLY',
+  },
+  {
+    number: '03',
+    category: 'Web & base de données',
+    title: 'Gestion de concours de dessins',
+    description: 'Une application académique gérant concours, inscriptions, dépôts, jurys, évaluations et résultats grâce à des espaces adaptés à chaque rôle.',
+    tags: ['PHP', 'MySQL', 'PDO', 'Modélisation', 'Sécurité'],
+    mark: 'SQL',
+  },
+];
+
+const statuses = [
+  { label: 'En ligne', tone: 'ok', use: 'Profil ou projet publié et à jour.' },
+  { label: 'En cours', tone: 'progress', use: 'Travail engagé, pas encore livré.' },
+  { label: 'À aligner', tone: 'todo', use: 'À mettre à jour avec le positionnement actuel.' },
+  { label: 'Dépôt privé', tone: 'neutral', use: 'Code non public, projet décrit sans lien.' },
+];
+
+const portraitTones = [
+  { name: 'Ombre', hex: '#311c10', role: 'Les zones les plus sombres : proches du marine profond.' },
+  { name: 'Cacao', hex: '#4f392a', role: 'Ton moyen foncé, jamais utilisé derrière du texte.' },
+  { name: 'Bronze', hex: '#7f5641', role: 'Ton médian : il appelle un fond chaud plutôt qu’un blanc froid.' },
+  { name: 'Caramel', hex: '#b3866e', role: 'Ton clair : il s’accorde au filet beige des bordures.' },
+  { name: 'Lumière', hex: '#e3bba4', role: 'Les reflets : la famille de la crème du fond de page.' },
+];
+
+const radii = [
+  { value: '999 px', css: '999px', use: 'Boutons, statuts, étiquettes' },
+  { value: '1 rem', css: '1rem', use: 'Pastilles multilignes' },
+  { value: '1,5 rem', css: '1.5rem', use: 'Cartes et visuels' },
+  { value: '22 %', css: '22%', use: 'Emblème mk.' },
+];
 
 const presence = [
   { name: 'Portfolio', detail: 'stephanemk.github.io', href: '/', status: 'En ligne' },
@@ -62,7 +153,7 @@ const never = [
 
 <BaseLayout
   pageTitle="Identité de marque | Moïse Stéphane KINYOK"
-  description="Le guide d’identité de Moïse Stéphane KINYOK, Data / Business Analyst : promesse, méthode, emblème, couleurs, typographie, composants et règles."
+  description="Le guide d’identité de Moïse Stéphane KINYOK, Data / Business Analyst : supports, méthode, emblème, couleurs, cartes, statuts, signature visuelle, règles et fondations."
   showPageTitle={false}
   pageClass="brand-page"
 >
@@ -97,25 +188,36 @@ const never = [
   </header>
 
   <div class="container brand-body">
-    <section class="brand-section" aria-labelledby="presence-title">
+    <section class="brand-section" aria-labelledby="supports-title">
       <div class="brand-section__head">
         <p class="section-kicker">01 / En un coup d’œil</p>
-        <h2 id="presence-title">Une identité, cinq points de contact</h2>
-        <p>Le même positionnement et la même direction artistique partout où un recruteur me découvre.</p>
+        <h2 id="supports-title">Une identité, tous les supports</h2>
+        <p>Les vrais visuels, construits avec les mêmes couleurs, les mêmes polices et le même emblème. Ce que vous voyez ici est ce qui est publié.</p>
       </div>
-      <ul class="presence-grid">
-        {presence.map((item) => (
-          <li>
-            <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer' : undefined}>
-              <span class:list={['presence-status', { 'presence-status--todo': item.status !== 'En ligne' }]}>{item.status}</span>
-              <strong>{item.name}</strong>
-              <span>{item.detail}</span>
-            </a>
-          </li>
+      <div class="support-gallery">
+        {supports.map((item) => (
+          <figure class:list={['support', `support--${item.layout}`]}>
+            <div class="support__frame">
+              <Image src={item.image} alt={item.alt} widths={item.widths} sizes={item.sizes} />
+            </div>
+            <figcaption><strong>{item.label}</strong><span>{item.size}</span></figcaption>
+          </figure>
         ))}
-      </ul>
+      </div>
+      <div class="support-featured">
+        <p class="support-featured__label"><strong>LinkedIn · miniatures de la section Sélection</strong><span>1200 × 627</span></p>
+        <ul>
+          {featured.map((item) => (
+            <li>
+              <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer' : undefined}>
+                <Image src={item.image} alt={item.alt} widths={[400, 700]} sizes="(min-width: 64rem) 26rem, 100vw" />
+                <span>{item.title}<span class="sr-only">{item.href.startsWith('http') ? ' (nouvel onglet)' : ''}</span></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
-
     <section class="brand-section" aria-labelledby="method-title">
       <div class="brand-section__head">
         <p class="section-kicker">02 / La méthode</p>
@@ -132,7 +234,6 @@ const never = [
         ))}
       </ol>
     </section>
-
     <section class="brand-section" aria-labelledby="emblem-title">
       <div class="brand-section__head">
         <p class="section-kicker">03 / L’emblème</p>
@@ -153,7 +254,6 @@ const never = [
         <li><strong>Forme fixe</strong> carré aux coins arrondis, jamais étiré ni pivoté.</li>
       </ul>
     </section>
-
     <section class="brand-section" aria-labelledby="colors-title">
       <div class="brand-section__head">
         <p class="section-kicker">04 / Couleurs</p>
@@ -171,64 +271,128 @@ const never = [
           </li>
         ))}
       </ul>
+      <div class="scale-block">
+        <h3>Une gamme complète par couleur</h3>
+        <p>Chaque couleur de marque se décline du fond très clair jusqu’au texte. Contraste mesuré sur blanc.</p>
+        {scales.map((scale) => (
+          <div class="scale">
+            <p class="scale__name"><strong>{scale.name}</strong><span>{scale.note}</span></p>
+            <ol class="scale__steps">
+              {scale.steps.map((step) => (
+                <li>
+                  <span class:list={['scale__chip', { 'scale__chip--dark': step.dark }]} style={`background:${step.hex}`}></span>
+                  <strong>{step.label}</strong>
+                  <code>{step.hex}</code>
+                  <span>{step.contrast}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+      </div>
     </section>
-
-    <section class="brand-section" aria-labelledby="type-title">
+    <section class="brand-section" aria-labelledby="projects-title">
       <div class="brand-section__head">
-        <p class="section-kicker">05 / Typographie</p>
-        <h2 id="type-title">Une serif expressive, une sans-serif précise</h2>
-        <p>Fraunces porte la voix éditoriale des titres. Geist garde le texte et l’interface nets et lisibles.</p>
+        <p class="section-kicker">05 / Cartes projet</p>
+        <h2 id="projects-title">Un visuel sobre, des faits précis</h2>
+        <p>Chaque projet suit la même grille : un numéro, un statut, un monogramme sur fond marine, une catégorie, une phrase qui dit ce que fait le projet et les technologies réellement utilisées.</p>
       </div>
-      <div class="type-pair">
-        <div><span class="type-pair__glyph type-pair__glyph--serif">Aa</span><strong>Fraunces</strong><span>Titres · 400 et 600 · italique pour l’emphase</span></div>
-        <div><span class="type-pair__glyph type-pair__glyph--sans">Aa</span><strong>Geist</strong><span>Texte et interface · 400 à 800</span></div>
+      <ul class="github-project-grid brand-projects" role="list">
+        {projects.map((project) => <ProjectCard {...project} />)}
+      </ul>
+    </section>
+    <section class="brand-section" aria-labelledby="states-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">06 / États</p>
+        <h2 id="states-title">Statuts et étiquettes</h2>
+        <p>Deux formes, deux rôles. Un statut porte un point de couleur et un mot. Une étiquette nomme un outil, dans une pastille neutre.</p>
       </div>
-      <ul class="type-scale">
-        {typeScale.map((row) => (
+      <div class="state-grid">
+        <div class="state-card">
+          <p class="component-card__label">Statuts</p>
+          <ul class="status-list">
+            {statuses.map((status) => (
+              <li><span class:list={['status-pill', `status-pill--${status.tone}`]}>{status.label}</span><span>{status.use}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="state-card">
+          <p class="component-card__label">Étiquettes</p>
+          <ul class="mini-tags" aria-label="Exemple d’étiquettes">
+            <li>SQL Oracle</li><li>Logstash</li><li>Kibana</li><li>Elastic ML</li><li>Power BI</li><li>Python</li>
+          </ul>
+          <p class="state-note">Toujours le nom exact de l’outil, jamais une catégorie vague.</p>
+        </div>
+      </div>
+      <h3 class="state-subtitle">En situation : mes profils</h3>
+      <ul class="presence-grid">
+        {presence.map((item) => (
           <li>
-            <div><strong>{row.label}</strong><span>{row.spec}</span></div>
-            <p class:list={['type-sample', row.className]}>{row.sample}</p>
+            <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer' : undefined}>
+              <span class:list={['status-pill', item.status === 'En ligne' ? 'status-pill--ok' : 'status-pill--todo']}>{item.status}</span>
+              <strong>{item.name}</strong>
+              <span>{item.detail}</span>
+            </a>
           </li>
         ))}
       </ul>
     </section>
-
-    <section class="brand-section" aria-labelledby="components-title">
+    <section class="brand-section" aria-labelledby="human-title">
       <div class="brand-section__head">
-        <p class="section-kicker">06 / Composants</p>
-        <h2 id="components-title">Les briques de l’interface</h2>
-        <p>Les mêmes éléments sur toutes les pages : un bouton principal, des liens texte, des pastilles neutres et des étapes numérotées.</p>
+        <p class="section-kicker">07 / La couche humaine</p>
+        <h2 id="human-title">Des tons tirés du portrait</h2>
+        <p>Cinq tons mesurés sur ma photo. Ils ne colorent pas l’interface : ils expliquent pourquoi la page est crème plutôt que blanche, et pourquoi le portrait est toujours posé sur un fond sombre.</p>
       </div>
-      <div class="component-grid">
-        <div class="component-card">
-          <p class="component-card__label">Actions</p>
-          <div class="component-row">
-            <a class="button button--accent" href="mailto:stephanekinyok26@gmail.com">Me contacter <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="/about/">Lire mon parcours <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-        <div class="component-card">
-          <p class="component-card__label">Sur-titres et pastilles</p>
-          <p class="eyebrow">CNP Assurances · Angers</p>
-          <p class="section-kicker">02 / Expertises</p>
-          <ul class="mini-tags" aria-label="Exemple de pastilles">
-            <li>SQL Oracle</li><li>Kibana</li><li>Elastic ML</li><li>Power BI</li>
-          </ul>
-        </div>
-        <figure class="chain component-card--wide">
-          <figcaption>Étapes numérotées</figcaption>
+      <div class="human-grid">
+        <figure class="human-photo">
+          <Image src={portrait} alt="Portrait de Moïse Stéphane KINYOK, sur fond sombre." width={360} />
+        </figure>
+        <ol class="tone-list">
+          {portraitTones.map((tone) => (
+            <li>
+              <span class="tone-chip" style={`background:${tone.hex}`}></span>
+              <strong>{tone.name}</strong>
+              <code>{tone.hex}</code>
+              <span>{tone.role}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+    <section class="brand-section" aria-labelledby="signature-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">08 / Signature visuelle</p>
+        <h2 id="signature-title">Le schéma, plus que le logo</h2>
+        <p>On reconnaît mon travail à la façon dont je dessine un flux : du besoin métier jusqu’à l’indicateur utilisé. La même grammaire partout : en-tête de README, posts, présentations et articles.</p>
+      </div>
+      <figure class="flow">
+        <ol>
+          <li><span>01</span><strong>Besoin métier</strong><em>La question de l’équipe</em></li>
+          <li><span>02</span><strong>Donnée</strong><em>Base, table, champ</em></li>
+          <li><span>03</span><strong>Traitement</strong><em>Requête, pipeline, contrôle</em></li>
+          <li class="flow__result"><span>04</span><strong>Indicateur</strong><em>Utilisé par l’équipe</em></li>
+        </ol>
+        <figcaption>Étapes en pastilles, flèches roses, résultat toujours en rose. Un seul sens de lecture, du besoin vers l’indicateur.</figcaption>
+      </figure>
+      <div class="signature-grid">
+        <figure class="chain">
+          <figcaption>Version verticale, dans les articles</figcaption>
           <ol>
             <li><strong>Besoin métier</strong><span>On part de la question de l’équipe</span></li>
             <li><strong>Donnée</strong><span>Requête, pipeline, index</span></li>
             <li class="chain__result"><strong>Résultat</strong><span>Un indicateur utilisé par l’équipe</span></li>
           </ol>
         </figure>
+        <ul class="rule-list rule-list--stack">
+          <li><strong>Un schéma par étude de cas</strong> et un par article technique.</li>
+          <li><strong>Des étapes nommées</strong> avec les mots du métier, pas ceux de l’outil.</li>
+          <li><strong>Un seul résultat</strong> mis en avant, à la fin du flux.</li>
+        </ul>
       </div>
     </section>
-
     <section class="brand-section" aria-labelledby="rules-title">
       <div class="brand-section__head">
-        <p class="section-kicker">07 / Règles</p>
+        <p class="section-kicker">09 / Règles</p>
         <h2 id="rules-title">Ce qui ne bouge pas</h2>
         <p>Les règles qui gardent l’identité cohérente, page après page et profil après profil.</p>
       </div>
@@ -243,10 +407,9 @@ const never = [
         </div>
       </div>
     </section>
-
     <section class="brand-section" aria-labelledby="tokens-title">
       <div class="brand-section__head">
-        <p class="section-kicker">08 / Tokens</p>
+        <p class="section-kicker">10 / Tokens</p>
         <h2 id="tokens-title">La référence technique</h2>
         <p>Les valeurs utilisées dans le code du portfolio (<code>src/styles/global.css</code>), avec leur contraste mesuré.</p>
       </div>
@@ -267,6 +430,54 @@ const never = [
             <tr><td><code>--radius-md</code></td><td colspan="2">1 rem</td><td>Pastilles multilignes</td></tr>
           </tbody>
         </table>
+      </div>
+    </section>
+    <section class="brand-section" aria-labelledby="foundations-title">
+      <div class="brand-section__head">
+        <p class="section-kicker">11 / Fondations</p>
+        <h2 id="foundations-title">Typographie, formes et détails</h2>
+        <p>Les polices portent la marque autant que les couleurs : une serif expressive pour les titres, une sans-serif précise pour lire, et un petit jeu de formes.</p>
+      </div>
+
+      <div class="type-pair">
+        <div><span class="type-pair__glyph type-pair__glyph--serif">Aa</span><strong>Fraunces</strong><span>Titres · 400 et 600 · italique pour l’emphase</span></div>
+        <div><span class="type-pair__glyph type-pair__glyph--sans">Aa</span><strong>Geist</strong><span>Texte et interface · 400 à 800</span></div>
+      </div>
+      <ul class="type-scale">
+        {typeScale.map((row) => (
+          <li>
+            <div><strong>{row.label}</strong><span>{row.spec}</span></div>
+            <p class:list={['type-sample', row.className]}>{row.sample}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="foundation-grid">
+        <div class="component-card">
+          <p class="component-card__label">Icônes</p>
+          <p class="foundation-glyphs" aria-hidden="true"><span>↗</span><span>→</span><span>✓</span></p>
+          <p>Une flèche ↗ termine chaque lien. Les logos de plateformes (LinkedIn, GitHub, GitLab) servent uniquement à pointer vers un profil.</p>
+        </div>
+        <div class="component-card">
+          <p class="component-card__label">Arrondis</p>
+          <ul class="radius-list">
+            {radii.map((radius) => (
+              <li><span class="radius-demo" style={`border-radius:${radius.css}`}></span><strong>{radius.value}</strong><span>{radius.use}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="component-card">
+          <p class="component-card__label">Séparateurs</p>
+          <p class="tri-accent" aria-hidden="true"><i></i><i></i><i></i></p>
+          <p>La barre tricolore ferme un titre sur les visuels. Les filets de 1 px structurent les listes. Aucun séparateur décoratif.</p>
+        </div>
+        <div class="component-card">
+          <p class="component-card__label">Actions</p>
+          <div class="component-row">
+            <a class="button button--accent" href="mailto:stephanekinyok26@gmail.com">Me contacter <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="/about/">Lire mon parcours <span aria-hidden="true">↗</span></a>
+          </div>
+          <p>Un seul bouton rose par écran. Tout le reste est un lien texte terminé par une flèche.</p>
+        </div>
       </div>
     </section>
   </div>
@@ -398,6 +609,7 @@ const never = [
 
   .presence-grid a {
     display: grid;
+    align-content: start;
     gap: 0.35rem;
     height: 100%;
     padding: 1.3rem;
@@ -426,29 +638,8 @@ const never = [
     overflow-wrap: anywhere;
   }
 
-  .presence-status {
-    justify-self: start;
-    margin-bottom: 0.6rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
-    background: var(--chip);
-    font-size: 0.68rem;
-    font-weight: 700;
-  }
 
-  .presence-status::before {
-    content: "";
-    display: inline-block;
-    width: 0.45rem;
-    height: 0.45rem;
-    margin-right: 0.4rem;
-    border-radius: 50%;
-    background: #2f9e6b;
-  }
 
-  .presence-status--todo::before {
-    background: var(--pink);
-  }
 
   .method-grid {
     display: grid;
@@ -556,6 +747,7 @@ const never = [
 
   .swatch-grid li {
     display: grid;
+    align-content: start;
     gap: 0.2rem;
     font-size: 0.85rem;
   }
@@ -689,11 +881,6 @@ const never = [
     text-transform: uppercase;
   }
 
-  .component-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
 
   .component-card {
     display: grid;
@@ -720,10 +907,6 @@ const never = [
     gap: 1.2rem;
   }
 
-  .component-card--wide {
-    grid-column: 1 / -1;
-    margin: 0;
-  }
 
   .do-dont {
     display: grid;
@@ -819,7 +1002,6 @@ const never = [
     .brand-section__head,
     .type-scale li,
     .type-pair,
-    .component-grid,
     .do-dont,
     .emblem-grid,
     .rule-list {
@@ -838,6 +1020,554 @@ const never = [
   @media (max-width: 35rem) {
     .method-grid {
       grid-template-columns: 1fr;
+    }
+  }
+  /* 01 · Supports */
+  .support-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 1.5rem 1rem;
+  }
+
+  .support {
+    display: grid;
+    align-content: start;
+    gap: 0.7rem;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .support--wide {
+    grid-column: 1 / -1;
+  }
+
+  .support--tall {
+    grid-row: span 2;
+  }
+
+  .support__frame {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+
+  .support__frame img,
+  .support-featured img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .support figcaption,
+  .support-featured__label {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.3rem 1rem;
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  .support figcaption strong,
+  .support-featured__label strong {
+    color: var(--ink);
+  }
+
+  .support figcaption span,
+  .support-featured__label span {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .support-featured {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 2rem;
+  }
+
+  .support-featured ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .support-featured a {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 200ms ease;
+  }
+
+  .support-featured a:hover {
+    border-color: var(--pink);
+  }
+
+  .support-featured a > span {
+    padding: 0.8rem 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+  }
+
+  /* 04 · Gammes */
+  .scale-block {
+    display: grid;
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+
+  .scale-block h3 {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  }
+
+  .scale-block > p {
+    max-width: 44rem;
+    color: var(--muted);
+  }
+
+  .scale {
+    display: grid;
+    gap: 0.7rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .scale__name {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+    align-items: baseline;
+  }
+
+  .scale__name span {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .scale__steps {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .scale__steps li {
+    display: grid;
+    gap: 0.15rem;
+    min-width: 0;
+    font-size: 0.8rem;
+  }
+
+  .scale__steps code,
+  .scale__steps li > span:last-child {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .scale__chip {
+    height: 3.5rem;
+    margin-bottom: 0.4rem;
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+  }
+
+  .scale__chip--dark {
+    border-color: transparent;
+  }
+
+  /* 05 · Cartes projet */
+  .brand-projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* 06 · Statuts et étiquettes */
+  .state-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .state-card {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .status-list {
+    display: grid;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .status-list li {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    gap: 0.45rem;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: var(--chip);
+    color: var(--ink);
+    font-size: 0.72rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .status-pill::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--muted);
+  }
+
+  .status-pill--ok::before {
+    background: #2f9e6b;
+  }
+
+  .status-pill--progress::before {
+    background: #d08a1e;
+  }
+
+  .status-pill--todo::before {
+    background: var(--pink);
+  }
+
+  .state-note {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .state-subtitle {
+    margin: 2.5rem 0 1rem;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  }
+
+  .presence-grid .status-pill {
+    margin-bottom: 0.6rem;
+  }
+
+  /* 07 · Couche humaine */
+  .human-grid {
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.4fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .human-photo {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: #070606;
+  }
+
+  .human-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .tone-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tone-list li {
+    display: grid;
+    grid-template-columns: 3rem 6rem 5.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.8rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
+  }
+
+  .tone-list code,
+  .tone-list li > span:last-child {
+    color: var(--muted);
+  }
+
+  .tone-chip {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  /* 08 · Signature visuelle */
+  .flow {
+    margin: 0;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .flow ol {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .flow li {
+    position: relative;
+    display: grid;
+    gap: 0.3rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--cream);
+  }
+
+  .flow li:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: -1.85rem;
+    color: var(--pink);
+    font-weight: 700;
+    transform: translateY(-50%);
+  }
+
+  .flow li span {
+    color: var(--pink);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  .flow li strong {
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+  }
+
+  .flow li em {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: normal;
+  }
+
+  .flow li.flow__result {
+    border-color: var(--pink);
+  }
+
+  .flow li.flow__result strong {
+    color: var(--pink);
+  }
+
+  .flow figcaption {
+    margin-top: 1.4rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .signature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .signature-grid .chain {
+    margin: 0;
+  }
+
+  .chain li.chain__result strong {
+    color: var(--pink);
+  }
+
+  .rule-list--stack {
+    grid-template-columns: 1fr;
+    align-content: start;
+    margin-top: 0;
+  }
+
+  /* 11 · Fondations */
+  .foundation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .foundation-grid .component-card > p:last-child {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .foundation-glyphs {
+    display: flex;
+    gap: 1.2rem;
+    color: var(--pink);
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+
+  .radius-list {
+    display: grid;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .radius-list li {
+    display: grid;
+    grid-template-columns: 6rem 4rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.88rem;
+  }
+
+  .radius-list li > span:last-child {
+    color: var(--muted);
+  }
+
+  .radius-demo {
+    width: 6rem;
+    height: 4.5rem;
+    border: 1.5px solid var(--ink);
+    background: var(--chip);
+  }
+
+  .tri-accent {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .tri-accent i {
+    display: block;
+    width: 2.2rem;
+    height: 0.3rem;
+    border-radius: 999px;
+    background: var(--ink);
+  }
+
+  .tri-accent i:nth-child(2) {
+    background: var(--accent-deep);
+  }
+
+  .tri-accent i:nth-child(3) {
+    background: var(--accent-bright);
+  }
+
+  @media (max-width: 64rem) {
+    .scale__steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .flow ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .flow li:nth-child(2)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 50rem) {
+    .support-gallery,
+    .state-grid,
+    .human-grid,
+    .signature-grid,
+    .foundation-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .support--tall {
+      grid-row: auto;
+    }
+
+    .support-featured ul,
+    .brand-projects {
+      grid-template-columns: 1fr;
+    }
+
+    .human-photo {
+      max-width: 18rem;
+    }
+
+    .tone-list li {
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+      gap: 0.2rem 1rem;
+    }
+
+    .tone-chip {
+      width: 2.5rem;
+      height: 2.5rem;
+      grid-row: span 3;
+    }
+
+    .tone-list li > :nth-child(n + 2) {
+      grid-column: 2;
+    }
+
+    .status-list li {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .flow ol {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+    }
+
+    .flow li:not(:last-child)::after {
+      top: auto;
+      right: auto;
+      bottom: -1.45rem;
+      left: 1.2rem;
+      transform: rotate(90deg);
+    }
+
+    .flow li:nth-child(2)::after {
+      display: block;
+    }
+
+    .scale__steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .radius-list li {
+      grid-template-columns: 6rem minmax(0, 1fr);
+    }
+
+    .radius-list li > span:last-child {
+      grid-column: 2;
     }
   }
 </style>

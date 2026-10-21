@@ -44,6 +44,30 @@ Hero ou en-tête de page **sombre** → contenu **crème** (sections séparées 
 - Cartes projets : même visuel marine pour toutes ; la différence vient du sigle (`mark`), pas de la couleur. Dépôts privés : pas de lien vers GitHub.
 - Schémas dans les articles : SVG en ligne avec les classes `.arch` (architecture) ou `.chain` (étapes numérotées + résultat), jamais de couleurs codées en dur.
 - Images : toujours via `astro:assets` (`<Image>`), fichiers dans `src/assets/images/`.
+- Statuts : pastille `--chip` + point de couleur et un mot. Vert `#2f9e6b` « En ligne », ambre `#d08a1e` « En cours », `--pink` « À aligner », gris `--muted` « Dépôt privé ».
+- Signature visuelle : le flux « Besoin métier → Donnée → Traitement → Indicateur », étapes en pastilles, flèches et résultat en rose.
+
+## Gammes de couleurs
+
+Mélange avec le blanc, contraste mesuré sur blanc.
+
+| Étape | Marine | Rose |
+|---|---|---|
+| Teinte | `#f3f4f5` | `#fcf4f7` |
+| Teinte forte | `#e1e4e7` | `#f8e4ec` |
+| Bordure | `#c3c9cf` | `#f2c9da` |
+| Ligne | `#778292` (3,9:1) | `#e183a9` (2,6:1) |
+| Signature | `#071c39` (17:1) | `#c81d63` (5,5:1) |
+| Texte | `#0a1830` (17,7:1) | `#a3134f` (7,6:1) |
+
+## Supports de marque
+
+Visuels dans `src/assets/brand/`, présentés sur `/brand/`. Modèle HTML source : `../linkedin-selection/supports.html` et `card.html`.
+
+- Bannière LinkedIn 1584 × 396 (texte à droite : la photo de profil couvre le bas gauche).
+- En-tête de README GitHub / GitLab 1584 × 396.
+- Post LinkedIn 1080 × 1350, diapositive 1920 × 1080, en-tête de CV (sans téléphone).
+- Miniatures de la section Sélection LinkedIn 1200 × 627 : GitHub, GitLab, marque.
 
 ## Contact
 
