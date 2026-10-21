@@ -39,12 +39,6 @@ const ogImageURL = new URL(ogImage.src, Astro.site ?? Astro.url);
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow, noimageindex" />}
-    {import.meta.env.PROD && (
-      <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
-      />
-    )}
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="theme-color" content="#f5f0e7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#07172d" media="(prefers-color-scheme: dark)" />
@@ -62,15 +56,8 @@ const ogImageURL = new URL(ogImage.src, Astro.site ?? Astro.url);
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <Font cssVariable="--font-display" preload />
     <Font cssVariable="--font-body" preload />
-    <script is:inline>
-      // Applique le thème avant le premier affichage pour éviter un flash.
-      (() => {
-        let stored = '';
-        try { stored = localStorage.getItem('theme') ?? ''; } catch {}
-        const dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.classList.toggle('dark', dark);
-      })();
-    </script>
+    <!-- Thème appliqué avant le premier affichage ; fichier externe pour respecter la CSP stricte. -->
+    <script is:inline src="/theme-init.js"></script>
     <title>{pageTitle}</title>
   </head>
 

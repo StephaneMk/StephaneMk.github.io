@@ -4,6 +4,25 @@ import { defineConfig, fontProviders } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://stephanemk.github.io',
+  // CSP stricte : Astro calcule une empreinte pour chaque script, sans 'unsafe-inline'.
+  // Les styles gardent 'unsafe-inline' pour les attributs style (pastilles de couleur).
+  security: {
+    csp: {
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data:",
+        "font-src 'self'",
+        "connect-src 'self'",
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+        'upgrade-insecure-requests',
+      ],
+      styleDirective: {
+        resources: ["'self'", "'unsafe-inline'"],
+      },
+    },
+  },
   fonts: [
     {
       name: 'Fraunces',
